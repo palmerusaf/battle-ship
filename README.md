@@ -159,9 +159,7 @@ Project Link: [https://github.com/palmerusaf/battle-ship](https://github.com/pal
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-* []()
-* []()
-* []()
+* [Best README Template](https://github.com/othneildrew/Best-README-Template)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
