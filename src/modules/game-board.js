@@ -52,8 +52,28 @@ export function GameBoard() {
     function placedOnAnotherShip() {
       return _grid[startingCoordinate].shipIndex !== "none";
     }
-    function calculateEndPositionOfShip() {
-      if (axis === "y") {
+  };
+
+  const receiveAttack = (coordinate) => {
+    if (_grid[coordinate].isPlayed) return;
+    _grid[coordinate].isPlayed = true;
+
+    if (_grid[coordinate].shipIndex === "none") return;
+    attackShip();
+
+    receiveAttack,
+    function attackShip() {
+      const shipIndex = _grid[coordinate].shipIndex;
+      const shipToAttack = _fleet[shipIndex];
+      shipToAttack.hit();
+
+      if (shipToAttack.isSunk()) publishShipSinking();
+
+      function publishShipSinking() {
+        pubsub.publish("shipHasSunk", {
+          shipCoordinates: shipToAttack.getCoordinates(),
+          shipIndex: shipIndex,
+        });
       }
     }
   };
