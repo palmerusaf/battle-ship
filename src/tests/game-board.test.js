@@ -24,14 +24,14 @@ function attackShipPlacedHorizontally(startingCoordinate, shipLength) {
   }
 }
 
-it.skip("GameBoard.getCoordinateStatus Test -- returns all required info", () => {
+it("GameBoard.getCoordinateStatus Test -- returns all required info", () => {
   expect(newBoard.getCoordinateStatus(0)).toEqual({
     isPlayed,
     shipIndex,
   });
 });
 
-it.skip("Place first ship horizontally", () => {
+it("Place first ship horizontally", () => {
   //place first ship
   newBoard.placeShip(0, "x");
   expect(newBoard.getCoordinateStatus(0)).toEqual({
@@ -50,7 +50,7 @@ it.skip("Place first ship horizontally", () => {
   });
 });
 
-it.skip("Place last ship horizontally", () => {
+it("Place last ship horizontally", () => {
   newBoard.placeShip(0, "x");
   newBoard.placeShip(10, "x");
   newBoard.placeShip(20, "x");
@@ -74,7 +74,7 @@ it.skip("Place last ship horizontally", () => {
   });
 });
 
-it.skip("Place first ship vertically", () => {
+it("Place first ship vertically", () => {
   //place first ship
   newBoard.placeShip(0, "y");
   expect(newBoard.getCoordinateStatus(0)).toEqual({
@@ -93,7 +93,7 @@ it.skip("Place first ship vertically", () => {
   });
 });
 
-it.skip("Place last ship vertically", () => {
+it("Place last ship vertically", () => {
   newBoard.placeShip(0, "y");
   newBoard.placeShip(1, "y");
   newBoard.placeShip(2, "y");
@@ -117,7 +117,7 @@ it.skip("Place last ship vertically", () => {
   });
 });
 
-it.skip("Can't place ships on other ships", () => {
+it("Can't place ships on other ships", () => {
   newBoard.placeShip(0, "x");
   newBoard.placeShip(1, "y");
   expect(newBoard.getCoordinateStatus(11)).toEqual({
@@ -131,7 +131,7 @@ it.skip("Can't place ships on other ships", () => {
   });
 });
 
-it.skip("Can't place ship in coordinates that will overflow grid horizontally", () => {
+it("Can't place ship in coordinates that will overflow grid horizontally", () => {
   newBoard.placeShip(6, "x");
   expect(newBoard.getCoordinateStatus(6)).toEqual({
     isPlayed: false,
@@ -144,7 +144,7 @@ it.skip("Can't place ship in coordinates that will overflow grid horizontally", 
   });
 });
 
-it.skip("Can't place ship in coordinates that will overflow grid vertically", () => {
+it("Can't place ship in coordinates that will overflow grid vertically", () => {
   newBoard.placeShip(60, "y");
   expect(newBoard.getCoordinateStatus(6)).toEqual({
     isPlayed: false,
@@ -157,7 +157,7 @@ it.skip("Can't place ship in coordinates that will overflow grid vertically", ()
   });
 });
 
-it.skip("newBoard.receiveAttack Test -- receiveAttack misses", () => {
+it("newBoard.receiveAttack Test -- receiveAttack misses", () => {
   newBoard.receiveAttack(0);
   expect(newBoard.getCoordinateStatus(0)).toEqual({
     isPlayed: true,
@@ -181,7 +181,7 @@ it("Sinking ship publishes report", () => {
   });
 });
 
-it.skip("newBoard.isFleetSunk Test -- sinking all ship changes isFleetSunk", () => {
+it("newBoard.isFleetSunk Test -- sinking all ship changes isFleetSunk", () => {
   placeAllShipHorizontally();
   expect(newBoard.isFleetSunk()).toBe(false);
   attackShipPlacedHorizontally(0, 5);
@@ -194,6 +194,6 @@ it.skip("newBoard.isFleetSunk Test -- sinking all ship changes isFleetSunk", () 
   expect(newBoard.isFleetSunk()).toBe(true);
 });
 
-it.skip("Attacking same locations does't sink ships", () => {
+it("Attacking same locations does't sink ships", () => {
   placeAllShipHorizontally();
 });
