@@ -1,7 +1,10 @@
 import { GameBoard } from "../modules/game-board";
 import { pubsub } from "../modules/pubsub";
 
-const newBoard = GameBoard();
+
+
+let newBoard;
+beforeEach(() => (newBoard = GameBoard()));
 
 function placeAllShipHorizontally() {
   newBoard.placeShip(0, "x");
@@ -26,146 +29,153 @@ function attackShipPlacedHorizontally(startingCoordinate, shipLength) {
 
 it("GameBoard.getCoordinateStatus Test -- returns all required info", () => {
   expect(newBoard.getCoordinateStatus(0)).toEqual({
-    isPlayed,
-    shipIndex,
+    isPlayed: false,
+    shipIndex: "none",
+  });
+  expect(newBoard.getCoordinateStatus(99)).toEqual({
+    isPlayed: false,
+    shipIndex: "none",
+  });
+  expect(newBoard.getCoordinateStatus(100)).toEqual(undefined);
+});
+
+describe("Ship placement tests", () => {
+  it("Place first ship horizontally", () => {
+    //place first ship
+    newBoard.placeShip(0, "x");
+    expect(newBoard.getCoordinateStatus(0)).toEqual({
+      isPlayed: false,
+      shipIndex: 0,
+    });
+
+    expect(newBoard.getCoordinateStatus(4)).toEqual({
+      isPlayed: false,
+      shipIndex: 0,
+    });
+
+    expect(newBoard.getCoordinateStatus(5)).toEqual({
+      isPlayed: false,
+      shipIndex: "none",
+    });
+  });
+
+  it("Place last ship horizontally", () => {
+    newBoard.placeShip(0, "x");
+    newBoard.placeShip(10, "x");
+    newBoard.placeShip(20, "x");
+    newBoard.placeShip(30, "x");
+    newBoard.placeShip(40, "x");
+    newBoard.placeShip(50, "x");
+    newBoard.placeShip(60, "x");
+    expect(newBoard.getCoordinateStatus(60)).toEqual({
+      isPlayed: false,
+      shipIndex: 6,
+    });
+
+    expect(newBoard.getCoordinateStatus(61)).toEqual({
+      isPlayed: false,
+      shipIndex: "none",
+    });
+
+    expect(newBoard.getCoordinateStatus(70)).toEqual({
+      isPlayed: false,
+      shipIndex: "none",
+    });
+  });
+
+  it("Place first ship vertically", () => {
+    //place first ship
+    newBoard.placeShip(0, "y");
+    expect(newBoard.getCoordinateStatus(0)).toEqual({
+      isPlayed: false,
+      shipIndex: 0,
+    });
+
+    expect(newBoard.getCoordinateStatus(2)).toEqual({
+      isPlayed: false,
+      shipIndex: "none",
+    });
+
+    expect(newBoard.getCoordinateStatus(40)).toEqual({
+      isPlayed: false,
+      shipIndex: 0,
+    });
+  });
+
+  it("Place last ship vertically", () => {
+    newBoard.placeShip(0, "y");
+    newBoard.placeShip(1, "y");
+    newBoard.placeShip(2, "y");
+    newBoard.placeShip(3, "y");
+    newBoard.placeShip(4, "y");
+    newBoard.placeShip(5, "y");
+    newBoard.placeShip(6, "y");
+    expect(newBoard.getCoordinateStatus(6)).toEqual({
+      isPlayed: false,
+      shipIndex: 6,
+    });
+
+    expect(newBoard.getCoordinateStatus(7)).toEqual({
+      isPlayed: false,
+      shipIndex: "none",
+    });
+
+    expect(newBoard.getCoordinateStatus(16)).toEqual({
+      isPlayed: false,
+      shipIndex: "none",
+    });
+  });
+
+  it("Can't place ships on other ships", () => {
+    newBoard.placeShip(0, "x");
+    newBoard.placeShip(1, "y");
+    expect(newBoard.getCoordinateStatus(11)).toEqual({
+      isPlayed: false,
+      shipIndex: "none",
+    });
+    newBoard.placeShip(10, "x");
+    expect(newBoard.getCoordinateStatus(10)).toEqual({
+      isPlayed: false,
+      shipIndex: 1,
+    });
+  });
+
+  it("Can't place ship in coordinates that will overflow grid horizontally", () => {
+    newBoard.placeShip(6, "x");
+    expect(newBoard.getCoordinateStatus(6)).toEqual({
+      isPlayed: false,
+      shipIndex: "none",
+    });
+    newBoard.placeShip(6, "y");
+    expect(newBoard.getCoordinateStatus(6)).toEqual({
+      isPlayed: false,
+      shipIndex: 0,
+    });
+  });
+
+  it("Can't place ship in coordinates that will overflow grid vertically", () => {
+    newBoard.placeShip(60, "y");
+    expect(newBoard.getCoordinateStatus(60)).toEqual({
+      isPlayed: false,
+      shipIndex: "none",
+    });
+    newBoard.placeShip(60, "x");
+    expect(newBoard.getCoordinateStatus(60)).toEqual({
+      isPlayed: false,
+      shipIndex: 0,
+    });
   });
 });
 
-it("Place first ship horizontally", () => {
-  //place first ship
-  newBoard.placeShip(0, "x");
-  expect(newBoard.getCoordinateStatus(0)).toEqual({
-    isPlayed: false,
-    shipIndex: 0,
-  });
-
-  expect(newBoard.getCoordinateStatus(4)).toEqual({
-    isPlayed: false,
-    shipIndex: 0,
-  });
-
-  expect(newBoard.getCoordinateStatus(5)).toEqual({
-    isPlayed: false,
-    shipIndex: null,
-  });
-});
-
-it("Place last ship horizontally", () => {
-  newBoard.placeShip(0, "x");
-  newBoard.placeShip(10, "x");
-  newBoard.placeShip(20, "x");
-  newBoard.placeShip(30, "x");
-  newBoard.placeShip(40, "x");
-  newBoard.placeShip(50, "x");
-  newBoard.placeShip(60, "x");
-  expect(newBoard.getCoordinateStatus(60)).toEqual({
-    isPlayed: false,
-    shipIndex: 6,
-  });
-
-  expect(newBoard.getCoordinateStatus(61)).toEqual({
-    isPlayed: false,
-    shipIndex: null,
-  });
-
-  expect(newBoard.getCoordinateStatus(70)).toEqual({
-    isPlayed: false,
-    shipIndex: null,
-  });
-});
-
-it("Place first ship vertically", () => {
-  //place first ship
-  newBoard.placeShip(0, "y");
-  expect(newBoard.getCoordinateStatus(0)).toEqual({
-    isPlayed: false,
-    shipIndex: 0,
-  });
-
-  expect(newBoard.getCoordinateStatus(2)).toEqual({
-    isPlayed: false,
-    shipIndex: null,
-  });
-
-  expect(newBoard.getCoordinateStatus(40)).toEqual({
-    isPlayed: false,
-    shipIndex: 0,
-  });
-});
-
-it("Place last ship vertically", () => {
-  newBoard.placeShip(0, "y");
-  newBoard.placeShip(1, "y");
-  newBoard.placeShip(2, "y");
-  newBoard.placeShip(3, "y");
-  newBoard.placeShip(4, "y");
-  newBoard.placeShip(5, "y");
-  newBoard.placeShip(6, "y");
-  expect(newBoard.getCoordinateStatus(6)).toEqual({
-    isPlayed: false,
-    shipIndex: 6,
-  });
-
-  expect(newBoard.getCoordinateStatus(7)).toEqual({
-    isPlayed: false,
-    shipIndex: null,
-  });
-
-  expect(newBoard.getCoordinateStatus(16)).toEqual({
-    isPlayed: false,
-    shipIndex: null,
-  });
-});
-
-it("Can't place ships on other ships", () => {
-  newBoard.placeShip(0, "x");
-  newBoard.placeShip(1, "y");
-  expect(newBoard.getCoordinateStatus(11)).toEqual({
-    isPlayed: false,
-    shipIndex: null,
-  });
-  newBoard.placeShip(10, "x");
-  expect(newBoard.getCoordinateStatus(10)).toEqual({
-    isPlayed: false,
-    shipIndex: 1,
-  });
-});
-
-it("Can't place ship in coordinates that will overflow grid horizontally", () => {
-  newBoard.placeShip(6, "x");
-  expect(newBoard.getCoordinateStatus(6)).toEqual({
-    isPlayed: false,
-    shipIndex: null,
-  });
-  newBoard.placeShip(6, "y");
-  expect(newBoard.getCoordinateStatus(6)).toEqual({
-    isPlayed: false,
-    shipIndex: 0,
-  });
-});
-
-it("Can't place ship in coordinates that will overflow grid vertically", () => {
-  newBoard.placeShip(60, "y");
-  expect(newBoard.getCoordinateStatus(6)).toEqual({
-    isPlayed: false,
-    shipIndex: null,
-  });
-  newBoard.placeShip(60, "x");
-  expect(newBoard.getCoordinateStatus(6)).toEqual({
-    isPlayed: false,
-    shipIndex: 0,
-  });
-});
-
-it("newBoard.receiveAttack Test -- receiveAttack misses", () => {
+it.skip("newBoard.receiveAttack Test -- receiveAttack misses", () => {
   newBoard.receiveAttack(0);
   expect(newBoard.getCoordinateStatus(0)).toEqual({
     isPlayed: true,
-    shipIndex: null,
+    shipIndex: "none",
   });
 });
 
-it("Sinking ship publishes report", () => {
+it.skip("Sinking ship publishes report", () => {
   placeAllShipHorizontally();
   attackShipPlacedHorizontally(0, 5);
   let sinkingReport;
@@ -181,7 +191,7 @@ it("Sinking ship publishes report", () => {
   });
 });
 
-it("newBoard.isFleetSunk Test -- sinking all ship changes isFleetSunk", () => {
+it.skip("newBoard.isFleetSunk Test -- sinking all ship changes isFleetSunk", () => {
   placeAllShipHorizontally();
   expect(newBoard.isFleetSunk()).toBe(false);
   attackShipPlacedHorizontally(0, 5);
@@ -194,6 +204,6 @@ it("newBoard.isFleetSunk Test -- sinking all ship changes isFleetSunk", () => {
   expect(newBoard.isFleetSunk()).toBe(true);
 });
 
-it("Attacking same locations does't sink ships", () => {
+it.skip("Attacking same locations does't sink ships", () => {
   placeAllShipHorizontally();
 });
