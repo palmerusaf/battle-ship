@@ -1,4 +1,5 @@
 import { ShipFleet } from "./ship-fleet";
+import { pubsub } from "./pubsub";
 
 export function GameBoard() {
   const _grid = buildGrid(100);
@@ -61,7 +62,6 @@ export function GameBoard() {
     if (_grid[coordinate].shipIndex === "none") return;
     attackShip();
 
-    receiveAttack,
     function attackShip() {
       const shipIndex = _grid[coordinate].shipIndex;
       const shipToAttack = _fleet[shipIndex];
@@ -78,9 +78,13 @@ export function GameBoard() {
     }
   };
 
+  const isFleetSunk = () => _fleet.every((ship) => ship.isSunk());
+
   return {
     getCoordinateStatus,
     placeShip,
+    receiveAttack,
+    isFleetSunk,
   };
 }
 
