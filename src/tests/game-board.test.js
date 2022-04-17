@@ -167,7 +167,7 @@ describe("Ship placement tests", () => {
   });
 });
 
-it.skip("newBoard.receiveAttack Test -- receiveAttack misses", () => {
+it("newBoard.receiveAttack Test -- receiveAttack misses", () => {
   newBoard.receiveAttack(0);
   expect(newBoard.getCoordinateStatus(0)).toEqual({
     isPlayed: true,
@@ -175,23 +175,23 @@ it.skip("newBoard.receiveAttack Test -- receiveAttack misses", () => {
   });
 });
 
-it.skip("Sinking ship publishes report", () => {
+it("Sinking ship publishes report", () => {
   placeAllShipHorizontally();
-  attackShipPlacedHorizontally(0, 5);
   let sinkingReport;
   pubsub.subscribe("shipHasSunk", (data) => (sinkingReport = data));
+  attackShipPlacedHorizontally(0, 5);
   expect(sinkingReport).toEqual({
-    shipId: 0,
+    shipIndex: 0,
     shipCoordinates: [0, 1, 2, 3, 4],
   });
   attackShipPlacedHorizontally(10, 4);
   expect(sinkingReport).toEqual({
-    shipId: 2,
+    shipIndex: 1,
     shipCoordinates: [10, 11, 12, 13],
   });
 });
 
-it.skip("newBoard.isFleetSunk Test -- sinking all ship changes isFleetSunk", () => {
+it("newBoard.isFleetSunk Test -- sinking all ship changes isFleetSunk", () => {
   placeAllShipHorizontally();
   expect(newBoard.isFleetSunk()).toBe(false);
   attackShipPlacedHorizontally(0, 5);
@@ -204,6 +204,6 @@ it.skip("newBoard.isFleetSunk Test -- sinking all ship changes isFleetSunk", () 
   expect(newBoard.isFleetSunk()).toBe(true);
 });
 
-it.skip("Attacking same locations does't sink ships", () => {
+it("Attacking same locations does't sink ships", () => {
   placeAllShipHorizontally();
 });
