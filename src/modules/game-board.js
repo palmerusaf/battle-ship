@@ -9,11 +9,7 @@ export function GameBoard() {
   const getCoordinateStatus = (index) => _grid[index];
 
   const placeShip = (startingCoordinate, axis) => {
-    const allShipsPlaced = _shipsPlaced === _fleet.length;
     const shipIndex = _shipsPlaced;
-    const isIllegalPlacement = overFlowsGrid() || placedOnAnotherShip();
-    if (allShipsPlaced) return;
-    if (isIllegalPlacement) return;
 
     setShipCoordinates();
     updateGridWithShipIndex();
@@ -29,6 +25,11 @@ export function GameBoard() {
     function setShipCoordinates() {
       _fleet[shipIndex].setCoordinates(startingCoordinate, axis);
     }
+  };
+
+  const isIllegalShipPlacement = (startingCoordinate, axis) => {
+    const shipIndex = _shipsPlaced;
+    return overFlowsGrid() || placedOnAnotherShip();
 
     function overFlowsGrid() {
       const shipLength = _fleet[shipIndex].getLength();
@@ -54,9 +55,9 @@ export function GameBoard() {
       return _grid[startingCoordinate].shipIndex !== "none";
     }
   };
-
-  const isLegalShipPlacement = (index) => {};
-  const areAllShipsPlaced = () => {};
+  const areAllShipsPlaced = () => {
+    return _shipsPlaced === _fleet.length;
+  };
 
   const receiveAttack = (coordinate) => {
     if (_grid[coordinate].isPlayed) return;
@@ -86,7 +87,7 @@ export function GameBoard() {
   return {
     getCoordinateStatus,
     placeShip,
-    isLegalShipPlacement,
+    isIllegalShipPlacement,
     areAllShipsPlaced,
     receiveAttack,
     isFleetSunk,
