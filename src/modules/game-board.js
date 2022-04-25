@@ -55,6 +55,9 @@ export function GameBoard() {
     }
   };
 
+  const isLegalShipPlacement = (index) => {};
+  const areAllShipsPlaced = () => {};
+
   const receiveAttack = (coordinate) => {
     if (_grid[coordinate].isPlayed) return;
     _grid[coordinate].isPlayed = true;
@@ -83,6 +86,8 @@ export function GameBoard() {
   return {
     getCoordinateStatus,
     placeShip,
+    isLegalShipPlacement,
+    areAllShipsPlaced,
     receiveAttack,
     isFleetSunk,
   };
