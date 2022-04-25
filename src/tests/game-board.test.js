@@ -1,8 +1,6 @@
 import { GameBoard } from "../modules/game-board";
 import { pubsub } from "../modules/pubsub";
 
-
-
 let newBoard;
 beforeEach(() => (newBoard = GameBoard()));
 
@@ -126,44 +124,44 @@ describe("Ship placement tests", () => {
     });
   });
 
-  it("Can't place ships on other ships", () => {
+  it("newBoard.isIllegalShipPlacement Test -- if legal placement returns false", () => {
+    expect(newBoard.isIllegalShipPlacement(0, "x")).toBe(false);
+  });
+
+  it("newBoard.isIllegalShipPlacement Test -- place ships on other ships returns true", () => {
     newBoard.placeShip(0, "x");
+    expect(newBoard.isIllegalShipPlacement(1, "y")).toBe(true);
+  });
+
+  it("newBoard.isIllegalShipPlacement Test -- place ship in coordinates that will overflow grid horizontally returns true", () => {
+    expect(newBoard.isIllegalShipPlacement(6, "x")).toBe(true);
+    expect(newBoard.isIllegalShipPlacement(6, "y")).toBe(false);
+  });
+
+  it("newBoard.isIllegalShipPlacement Test -- place ship in coordinates that will overflow grid vertically returns true", () => {
+    expect(newBoard.isIllegalShipPlacement(60, "y")).toBe(true);
+    expect(newBoard.isIllegalShipPlacement(70, "y")).toBe(true);
+    expect(newBoard.isIllegalShipPlacement(60, "x")).toBe(false);
+  });
+
+  it("newBoard.areAllShipsPlaced Test -- place no ships returns false", () => {
+    expect(newBoard.areAllShipsPlaced()).toBe(false);
+  });
+
+  it("newBoard.areAllShipsPlaced Test -- place one ship returns false", () => {
+    newBoard.placeShip(0, "x");
+    expect(newBoard.areAllShipsPlaced()).toBe(false);
+  });
+
+  it("newBoard.areAllShipsPlaced Test -- place all ships returns true", () => {
+    newBoard.placeShip(0, "y");
     newBoard.placeShip(1, "y");
-    expect(newBoard.getCoordinateStatus(11)).toEqual({
-      isPlayed: false,
-      shipIndex: "none",
-    });
-    newBoard.placeShip(10, "x");
-    expect(newBoard.getCoordinateStatus(10)).toEqual({
-      isPlayed: false,
-      shipIndex: 1,
-    });
-  });
-
-  it("Can't place ship in coordinates that will overflow grid horizontally", () => {
-    newBoard.placeShip(6, "x");
-    expect(newBoard.getCoordinateStatus(6)).toEqual({
-      isPlayed: false,
-      shipIndex: "none",
-    });
+    newBoard.placeShip(2, "y");
+    newBoard.placeShip(3, "y");
+    newBoard.placeShip(4, "y");
+    newBoard.placeShip(5, "y");
     newBoard.placeShip(6, "y");
-    expect(newBoard.getCoordinateStatus(6)).toEqual({
-      isPlayed: false,
-      shipIndex: 0,
-    });
-  });
-
-  it("Can't place ship in coordinates that will overflow grid vertically", () => {
-    newBoard.placeShip(60, "y");
-    expect(newBoard.getCoordinateStatus(60)).toEqual({
-      isPlayed: false,
-      shipIndex: "none",
-    });
-    newBoard.placeShip(60, "x");
-    expect(newBoard.getCoordinateStatus(60)).toEqual({
-      isPlayed: false,
-      shipIndex: 0,
-    });
+    expect(newBoard.areAllShipsPlaced()).toBe(true);
   });
 });
 
@@ -204,6 +202,3 @@ it("newBoard.isFleetSunk Test -- sinking all ship changes isFleetSunk", () => {
   expect(newBoard.isFleetSunk()).toBe(true);
 });
 
-it("Attacking same locations does't sink ships", () => {
-  placeAllShipHorizontally();
-});
