@@ -9,11 +9,7 @@ export function GameBoard() {
   const getCoordinateStatus = (index) => _grid[index];
 
   const placeShip = (startingCoordinate, axis) => {
-    const allShipsPlaced = _shipsPlaced === _fleet.length;
     const shipIndex = _shipsPlaced;
-    const isIllegalPlacement = overFlowsGrid() || placedOnAnotherShip();
-    if (allShipsPlaced) return;
-    if (isIllegalPlacement) return;
 
     setShipCoordinates();
     updateGridWithShipIndex();
@@ -29,30 +25,35 @@ export function GameBoard() {
     function setShipCoordinates() {
       _fleet[shipIndex].setCoordinates(startingCoordinate, axis);
     }
+  };
+
+  const isIllegalShipPlacement = (startingCoordinate, axis) => {
+    const shipIndex = _shipsPlaced;
+    return overFlowsGrid() || placedOnAnotherShip();
 
     function overFlowsGrid() {
       const shipLength = _fleet[shipIndex].getLength();
       return overFlowsGridOnXAxis() || overFlowsGridOnYAxis();
 
       function overFlowsGridOnXAxis() {
-        if (axis === "x") {
-          const firstDigitOfStartingCoordinate = startingCoordinate % 10;
-          return shipLength + firstDigitOfStartingCoordinate >= 10;
-        } else return false;
+        if (axis !== "x") return false;
+        const firstDigitOfStartingCoordinate = startingCoordinate % 10;
+        return shipLength + firstDigitOfStartingCoordinate >= 10;
       }
 
       function overFlowsGridOnYAxis() {
-        if (axis === "y") {
-          const endOfShipCoordinate =
-            (shipLength - 1) * 10 + startingCoordinate;
-          return endOfShipCoordinate >= _grid.length;
-        } else return false;
+        if (axis !== "y") return false;
+        const endOfShipCoordinate = (shipLength - 1) * 10 + startingCoordinate;
+        return endOfShipCoordinate >= _grid.length;
       }
     }
 
     function placedOnAnotherShip() {
       return _grid[startingCoordinate].shipIndex !== "none";
     }
+  };
+  const areAllShipsPlaced = () => {
+    return _shipsPlaced === _fleet.length;
   };
 
   const receiveAttack = (coordinate) => {
@@ -83,6 +84,8 @@ export function GameBoard() {
   return {
     getCoordinateStatus,
     placeShip,
+    isIllegalShipPlacement,
+    areAllShipsPlaced,
     receiveAttack,
     isFleetSunk,
   };
