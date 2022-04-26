@@ -1,8 +1,9 @@
 import { ShipFleet } from "./ship-fleet";
 import { pubsub } from "./pubsub";
 
+const GRID_SIZE = 100;
 export function GameBoard() {
-  const _grid = buildGrid(100);
+  const _grid = buildGrid(GRID_SIZE);
   const _fleet = ShipFleet();
   let _shipsPlaced = 0;
 
