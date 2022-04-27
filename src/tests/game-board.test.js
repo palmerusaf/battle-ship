@@ -165,6 +165,12 @@ describe("Ship placement tests", () => {
   });
 });
 
+it("placeAllShipsAtRandomCoordinates causes areAllShipsPlaced to return true", () => {
+  expect(newBoard.areAllShipsPlaced()).toBe(false);
+  newBoard.placeAllShipsAtRandomCoordinates();
+  expect(newBoard.areAllShipsPlaced()).toBe(true);
+});
+
 it("newBoard.receiveAttack Test -- receiveAttack misses", () => {
   newBoard.receiveAttack(0);
   expect(newBoard.getCoordinateStatus(0)).toEqual({
@@ -201,4 +207,3 @@ it("newBoard.isFleetSunk Test -- sinking all ship changes isFleetSunk", () => {
   attackShipPlacedHorizontally(60, 1);
   expect(newBoard.isFleetSunk()).toBe(true);
 });
-

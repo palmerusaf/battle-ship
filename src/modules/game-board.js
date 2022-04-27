@@ -82,11 +82,39 @@ export function GameBoard() {
 
   const isFleetSunk = () => _fleet.every((ship) => ship.isSunk());
 
+  const placeAllShipsAtRandomCoordinates = () => {
+    while (!areAllShipsPlaced()) {
+      const [legalCoordinate, legalAxis] = getRandomLegalPlacement();
+      placeShip(legalCoordinate, legalAxis);
+    }
+
+    function getRandomLegalPlacement() {
+      // while (true) {
+      //   const [coordinate, axis] = getRandomPlacement();
+      //   if (!isIllegalShipPlacement(coordinate, axis))
+      //     return [coordinate, axis];
+      // }
+      let [coordinate, axis] = getRandomPlacement();
+      while (isIllegalShipPlacement(coordinate, axis)) {
+        [coordinate, axis] = getRandomPlacement();
+      }
+      return [coordinate, axis];
+    }
+
+    function getRandomPlacement() {
+      const axes = ["x", "y"];
+      const randomAxis = axes[Math.floor(Math.random() * axes.length)];
+      const randomCoordinate = Math.floor(Math.random() * GRID_SIZE);
+      return [randomCoordinate, randomAxis];
+    }
+  };
+
   return {
     getCoordinateStatus,
     placeShip,
     isIllegalShipPlacement,
     areAllShipsPlaced,
+    placeAllShipsAtRandomCoordinates,
     receiveAttack,
     isFleetSunk,
   };
