@@ -1,0 +1,55 @@
+@import "./variables.scss";
+
+.ship-placement-screen {
+  display: grid;
+  height: 100%;
+  font-family: "Mil Stencil";
+  align-items: center;
+  grid-template-rows: repeat(3, 1fr) 5fr 1fr;
+  place-items: center;
+}
+.welcome-msg {
+  font-size: 2rem;
+  color: $navy-chain-outline;
+}
+.directions {
+  color: $navy-gray-chain;
+  margin: 0 2rem;
+}
+.button-field {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  gap: 1rem;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  width: 75vmin;
+  max-width: 500px;
+  max-height: 500px;
+  height: 75vmin;
+  &__element {
+    border: solid 1px $navy-chain-outline;
+    background-color: $navy-gray-chain;
+  }
+}
+.continue {
+  align-self: start;
+}
+@media screen and (orientation: landscape) {
+  .ship-placement-screen {
+    grid-template-rows: 1fr auto auto;
+    grid-template-columns: 1fr 1.5fr 1fr;
+  }
+  .welcome-msg {
+    grid-column: 1/-1;
+  }
+  .directions {
+    grid-row: 2/-1;
+  }
+  .grid-container {
+    grid-row: 2/-1;
+  }
+}
