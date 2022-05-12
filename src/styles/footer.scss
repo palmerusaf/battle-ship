@@ -1,0 +1,23 @@
+@import "./variables.scss";
+
+.footers-parent {
+  height: 100%;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  background-color: $navy-blue;
+}
+.footer {
+  display: flex;
+  justify-content: center;
+  padding: 0.3rem;
+  background-color: $navy-gray-chain;
+  &__repo-link {
+    display: flex;
+    align-items: center;
+    color: #000;
+  }
+  &__github-icon {
+    height: 1.5rem;
+    margin-right: 0.4rem;
+  }
+}

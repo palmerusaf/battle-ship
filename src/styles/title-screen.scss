@@ -1,20 +1,8 @@
-@font-face {
-  font-family: "Special Elite";
-  src: url("/src/fonts/SpecialElite-Regular.ttf");
-}
-
-$navy-blue: #062d6a;
-$navy-gold: #feb932;
-$navy-brown-outline: #765f3a;
-$navy-gray-chain: #cacaca;
-$navy-chain-outline: #969696;
-$navy-brown-eagle: #73391f;
+@import "../styles/variables.scss";
 
 .title-screen {
   height: 100%;
   display: grid;
-  grid-template-rows: 1fr 1fr auto;
-  background-color: $navy-blue;
 }
 .title {
   align-self: end;
@@ -28,34 +16,4 @@ $navy-brown-eagle: #73391f;
 .play-button {
   align-self: start;
   justify-self: center;
-  font-size: 1.2rem;
-  padding: 0.4rem 1rem;
-  background-color: $navy-gray-chain;
-  border-radius: 50px;
-  border: none;
-  border: $navy-chain-outline solid 2px;
-  cursor: pointer;
-  transition: 300ms;
-  &:hover {
-    transform: scale(1.08);
-    transition: 300ms;
-  }
-}
-.footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  bottom: 0;
-  padding: 0.3rem;
-  background-color: $navy-gray-chain;
-  grid-row: -2/-1;
-  &__repo-link {
-    display: flex;
-    align-items: center;
-    color: #000;
-  }
-  &__github-icon {
-    height: 1.5rem;
-    margin-right: 0.4rem;
-  }
 }
