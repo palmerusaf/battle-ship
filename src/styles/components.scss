@@ -14,3 +14,12 @@
     transition: 300ms;
   }
 }
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  &__element {
+    border: solid 1px $navy-chain-outline;
+    background-color: $navy-gray-chain;
+  }
+}

@@ -31,7 +31,7 @@ export function shipPlacementScreen() {
 
   const placementGrid = Components.newGrid();
   placementGrid.setClickable();
-  placementGrid.addParentClass('placement-grid')
+  placementGrid.addParentClass("placement-grid");
   placementGrid.setCoordinateHoverMsg("Place Ship at");
   shipPlacementScreen.appendChild(placementGrid.render());
 

@@ -23,18 +23,11 @@
   justify-content: center;
   gap: 1rem;
 }
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  grid-template-rows: repeat(10, 1fr);
+.placement-grid {
   width: 95vmin;
   height: 95vmin;
   max-width: 500px;
   max-height: 500px;
-  &__element {
-    border: solid 1px $navy-chain-outline;
-    background-color: $navy-gray-chain;
-  }
 }
 @media screen and (orientation: landscape) and (max-height: 500px) {
   .ship-placement-screen {
@@ -47,21 +40,21 @@
   .directions {
     grid-row: 2/-1;
   }
-  .grid-container {
+  .placement-grid {
     grid-row: 2/-1;
     width: 65vmin;
     height: 65vmin;
     align-self: start;
   }
-  .continue{
+  .continue {
     align-self: start;
   }
 }
 @media screen and (min-width: 500px) and (min-height: 376px) {
- .welcome-msg{
-   font-size: 4rem;
- } 
- .directions{
-   font-size: 1.5rem;
- }
+  .welcome-msg {
+    font-size: 4rem;
+  }
+  .directions {
+    font-size: 1.5rem;
+  }
 }
