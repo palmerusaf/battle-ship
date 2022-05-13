@@ -36,10 +36,7 @@
     background-color: $navy-gray-chain;
   }
 }
-.continue {
-  align-self: start;
-}
-@media screen and (orientation: landscape) {
+@media screen and (orientation: landscape) and (max-height: 500px) {
   .ship-placement-screen {
     grid-template-rows: 0.7fr auto auto;
     grid-template-columns: 1fr 1.5fr 1fr;
@@ -56,4 +53,15 @@
     height: 65vmin;
     align-self: start;
   }
+  .continue{
+    align-self: start;
+  }
+}
+@media screen and (min-width: 500px) and (min-height: 376px) {
+ .welcome-msg{
+   font-size: 4rem;
+ } 
+ .directions{
+   font-size: 1.5rem;
+ }
 }
