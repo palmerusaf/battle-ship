@@ -29,37 +29,11 @@ export function shipPlacementScreen() {
   const reset = Components.newButton("Reset");
   buttonField.appendChild(reset);
 
-  const gridContainer = newGrid();
-  setClickable();
-  setCoordinateHoverMsg("Place Ship at");
-  shipPlacementScreen.appendChild(gridContainer);
-
-  function setClickable() {
-    const gridElements = [...gridContainer.children];
-    gridElements.forEach((gridElement, index) => {
-      gridElement.setAttribute("tabindex", "0");
-    });
-  }
-  function setCoordinateHoverMsg(message) {
-    const gridElements = [...gridContainer.children];
-    gridElements.forEach((gridElement, index) => {
-      gridElement.title = `${message} ${xYCoordinate(index)}`;
-    });
-    function xYCoordinate(index) {
-      return `(${(index % 10) + 1}, ${Math.floor(index / 10 + 1)})`;
-    }
-  }
-  function newGrid() {
-    const GRID_SIZE = 100;
-    const gridContainer = document.createElement("div");
-    gridContainer.classList.add("grid-container");
-    for (let i = 0; i < GRID_SIZE; i++) {
-      const gridElement = document.createElement("div");
-      gridElement.classList.add("grid-container__element");
-      gridContainer.appendChild(gridElement);
-    }
-    return gridContainer;
-  }
+  const placementGrid = Components.newGrid();
+  placementGrid.setClickable();
+  placementGrid.addParentClass('placement-grid')
+  placementGrid.setCoordinateHoverMsg("Place Ship at");
+  shipPlacementScreen.appendChild(placementGrid.render());
 
   const continueButton = Components.newButton("Continue");
   continueButton.classList.add("continue");
