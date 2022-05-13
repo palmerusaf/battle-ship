@@ -1,7 +1,7 @@
 import "./styles/footer.scss";
 import "./styles/reset.scss";
 
-import "./styles/ship-placement-screen.scss"
+import "./styles/ship-placement-screen.scss";
 import { Components } from "./modules/components";
 
 const content = document.querySelector(".content");
@@ -35,12 +35,14 @@ const GRID_SIZE = 100;
 const gridContainer = document.createElement("div");
 gridContainer.classList.add("grid-container");
 for (let i = 0; i < GRID_SIZE; i++) {
-  const gridElement = document.createElement("button");
+  const gridElement = document.createElement("div");
   gridElement.classList.add("grid-container__element");
+  gridElement.setAttribute("tabindex", "0");
+  gridElement.title = `Coordinate (${(i + 1) % 10}, ${Math.floor(i / 10 + 1)})`;
   gridContainer.appendChild(gridElement);
 }
 shipPlacementScreen.appendChild(gridContainer);
 
-const continueButton=Components.newButton('Continue')
-continueButton.classList.add('continue')
-shipPlacementScreen.appendChild(continueButton)
+const continueButton = Components.newButton("Continue");
+continueButton.classList.add("continue");
+shipPlacementScreen.appendChild(continueButton);

@@ -41,7 +41,7 @@
 }
 @media screen and (orientation: landscape) {
   .ship-placement-screen {
-    grid-template-rows: .7fr auto auto;
+    grid-template-rows: 0.7fr auto auto;
     grid-template-columns: 1fr 1.5fr 1fr;
   }
   .welcome-msg {
