@@ -14,7 +14,7 @@ export function battleScreen() {
 
   const gridLabel = document.createElement("h2");
   gridLabel.classList.add("grid-area__label");
-  gridLabel.textContent = "Enemy's Grid";
+  gridLabel.textContent = "Enemy Grid";
   gridArea.appendChild(gridLabel);
 
   const grid = Components.newGrid();
@@ -22,24 +22,43 @@ export function battleScreen() {
   grid.setClickable();
   gridArea.appendChild(grid.render());
 
-  const inventoryArea = document.createElement("div");
-  inventoryArea.classList.add("inventory-area");
-  battleScreen.appendChild(inventoryArea);
+  const shipArea = document.createElement("div");
+  shipArea.classList.add("ship-area");
+  battleScreen.appendChild(shipArea);
 
-  const inventoryLabel = document.createElement("h3");
-  inventoryLabel.classList.add("inventory-area__label");
-  inventoryLabel.textContent = "Enemy's Inventory";
-  inventoryArea.appendChild(inventoryLabel);
+  const shipLabel = document.createElement("h3");
+  shipLabel.classList.add("ship-area__label");
+  shipLabel.textContent = "Enemy ship";
+  shipArea.appendChild(shipLabel);
 
-  const inventoryList = document.createElement("ul");
-  inventoryList.classList.add("inventory-area__list");
-  inventoryArea.appendChild(inventoryList);
+  const shipList = document.createElement("ul");
+  shipList.classList.add("ship-area__list");
+  shipArea.appendChild(shipList);
 
-  const inventoryItem = document.createElement("li");
-  inventoryItem.classList.add("inventory-area__item");
-  inventoryList.appendChild(inventoryItem);
+  addShipsTo(shipList);
 
-  const inventoryImg = document.createElement("img");
-  inventoryImg.classList.add("inventory-area__img");
-  inventoryItem.appendChild(inventoryImg);
+  function addShipsTo(shipList) {
+    const NUM_SHIPS_IN_FLEET = 7;
+    for (let i = 0; i < NUM_SHIPS_IN_FLEET; i++) {
+      const shipItem = document.createElement("li");
+      shipItem.classList.add(
+        "ship-area__item",
+        `enemy-ship-list-item-${i}`
+      );
+      shipList.appendChild(shipItem);
+
+      const shipImg = document.createElement("img");
+      shipImg.classList.add("ship-area__img");
+      shipImg.src = selectShipImgBasedOn(i);
+      shipItem.appendChild(shipImg);
+    }
+    function selectShipImgBasedOn(index) {
+      let imgSrc = "/src/imgs/";
+      if (index === 0) return imgSrc + "carrier.png";
+      if (index === 1) return imgSrc + "battleship.png";
+      if (index === 2) return imgSrc + "cruiser.png";
+      if (index === 3 || index === 4) return imgSrc + "destroyer.png";
+      if (index === 5 || index === 6) return imgSrc + "submarine.png";
+    }
+  }
 }
