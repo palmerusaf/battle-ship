@@ -3,7 +3,7 @@ import "../styles/components.scss";
 export const Components = (() => {
   function newButton(label) {
     const button = document.createElement("button");
-    button.classList.add("button");
+    button.classList.add("button", "clickable");
     button.textContent = label;
     return button;
   }
@@ -35,7 +35,7 @@ export const Components = (() => {
     function setClickable() {
       _modElements((gridElement) => {
         gridElement.setAttribute("tabindex", "0");
-        gridElement.classList.add("grid-container__element--clickable");
+        gridElement.classList.add("clickable");
       });
     }
 
