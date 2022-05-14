@@ -33,7 +33,10 @@ export const Components = (() => {
     }
 
     function setClickable() {
-      _modElements((gridElement) => gridElement.setAttribute("tabindex", "0"));
+      _modElements((gridElement) => {
+        gridElement.setAttribute("tabindex", "0");
+        gridElement.classList.add("grid-container__element--clickable");
+      });
     }
 
     function setCoordinateHoverMsg(message) {

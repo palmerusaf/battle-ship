@@ -21,5 +21,13 @@
   &__element {
     border: solid 1px $navy-chain-outline;
     background-color: $navy-gray-chain;
+    &--clickable {
+      cursor: pointer;
+      transition: 300ms;
+      &:hover {
+        transform: scale(1.08);
+        transition: 300ms;
+      }
+    }
   }
 }
