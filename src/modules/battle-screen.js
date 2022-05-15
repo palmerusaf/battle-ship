@@ -8,57 +8,66 @@ export function battleScreen() {
   battleScreen.classList.add("battle-screen");
   content.appendChild(battleScreen);
 
-  const gridArea = document.createElement("div");
-  gridArea.classList.add("grid-area");
-  battleScreen.appendChild(gridArea);
+  battleScreen.appendChild(newGridAreaFor("Enemy"));
+  battleScreen.appendChild(newShipListFor("Enemy"));
 
-  const gridLabel = document.createElement("h2");
-  gridLabel.classList.add("grid-area__label");
-  gridLabel.textContent = "Enemy Grid";
-  gridArea.appendChild(gridLabel);
+  battleScreen.appendChild(newGridAreaFor("Player"));
+  battleScreen.appendChild(newShipListFor("Player"));
 
-  const grid = Components.newGrid();
-  grid.addParentClass("battle-grid");
-  grid.setClickable();
-  gridArea.appendChild(grid.render());
+  function newGridAreaFor(playerName) {
+    const gridArea = document.createElement("div");
+    gridArea.classList.add("grid-area");
 
-  const shipArea = document.createElement("div");
-  shipArea.classList.add("ship-area");
-  battleScreen.appendChild(shipArea);
+    const gridLabel = document.createElement("h2");
+    gridLabel.classList.add("grid-area__label");
+    gridLabel.textContent = `${playerName} Grid`;
+    gridArea.appendChild(gridLabel);
 
-  const shipLabel = document.createElement("h3");
-  shipLabel.classList.add("ship-area__label");
-  shipLabel.textContent = "Enemy ship";
-  shipArea.appendChild(shipLabel);
+    const grid = Components.newGrid();
+    grid.addParentClass("battle-grid");
+    if (playerName === "Enemy") grid.setClickable();
+    gridArea.appendChild(grid.render());
 
-  const shipList = document.createElement("ul");
-  shipList.classList.add("ship-area__list");
-  shipArea.appendChild(shipList);
+    return gridArea;
+  }
 
-  addShipsTo(shipList);
+  function newShipListFor(playerName) {
+    const shipArea = document.createElement("div");
+    shipArea.classList.add("ship-area");
 
-  function addShipsTo(shipList) {
-    const NUM_SHIPS_IN_FLEET = 7;
-    for (let i = 0; i < NUM_SHIPS_IN_FLEET; i++) {
-      const shipItem = document.createElement("li");
-      shipItem.classList.add(
-        "ship-area__item",
-        `enemy-ship-list-item-${i}`
-      );
-      shipList.appendChild(shipItem);
+    const shipLabel = document.createElement("h3");
+    shipLabel.classList.add("ship-area__label");
+    shipLabel.textContent = `${playerName} Ships`;
+    shipArea.appendChild(shipLabel);
 
-      const shipImg = document.createElement("img");
-      shipImg.classList.add("ship-area__img");
-      shipImg.src = selectShipImgBasedOn(i);
-      shipItem.appendChild(shipImg);
-    }
-    function selectShipImgBasedOn(index) {
-      let imgSrc = "/src/imgs/";
-      if (index === 0) return imgSrc + "carrier.png";
-      if (index === 1) return imgSrc + "battleship.png";
-      if (index === 2) return imgSrc + "cruiser.png";
-      if (index === 3 || index === 4) return imgSrc + "destroyer.png";
-      if (index === 5 || index === 6) return imgSrc + "submarine.png";
+    const shipList = document.createElement("ul");
+    shipList.classList.add("ship-area__list");
+    shipArea.appendChild(shipList);
+
+    addShipsTo(shipList);
+
+    return shipArea;
+    function addShipsTo(shipList) {
+      const NUM_SHIPS_IN_FLEET = 7;
+      for (let i = 0; i < NUM_SHIPS_IN_FLEET; i++) {
+        const shipItem = document.createElement("li");
+        shipItem.classList.add(
+          "ship-area__item",
+          `${playerName}-ship-list-item-${i}`
+        );
+        shipList.appendChild(shipItem);
+
+        const shipImg = document.createElement("img");
+        shipImg.src = `/src/imgs/${mapShipTo(i)}.png`;
+        shipItem.appendChild(shipImg);
+      }
+      function mapShipTo(index) {
+        if (index === 0) return "carrier";
+        if (index === 1) return "battleship";
+        if (index === 2) return "cruiser";
+        if (index === 3 || index === 4) return "destroyer";
+        if (index === 5 || index === 6) return "submarine";
+      }
     }
   }
 }
