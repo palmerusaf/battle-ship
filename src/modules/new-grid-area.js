@@ -2,7 +2,7 @@ import { Components } from "./components";
 
 export function newGridAreaFor(playerName) {
   const gridArea = document.createElement("div");
-  gridArea.classList.add("grid-area");
+  gridArea.classList.add("grid-area", `grid-area--${playerName}`);
 
   const gridLabel = document.createElement("h2");
   gridLabel.classList.add("grid-area__label");

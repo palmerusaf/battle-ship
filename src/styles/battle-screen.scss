@@ -23,12 +23,12 @@
     text-align: center;
   }
   &__grid {
-    $size: 75vmin;
-    width: $size;
-    height: $size;
+    $vmin-size: 75vmin;
+    width: $vmin-size;
+    height: $vmin-size;
   }
 }
-@media screen and (orientation: landscape) {
+@media screen and (orientation: landscape) and (max-height: 500px) {
   .battle-screen {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: 1fr;
@@ -42,5 +42,45 @@
   }
   .footer {
     display: none;
+  }
+}
+//desktop styling
+@media screen and (min-width: 1000px) {
+  .battle-screen {
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .grid-area {
+    &__grid {
+      width: 400px;
+      height: 400px;
+    }
+  }
+  .ship-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    &--Player {
+      grid-area: 2;
+      
+    }
+    &__label {
+      font-family: "Mil Stencil";
+      color: $navy-chain-outline;
+      font-size: 1.1rem;
+      margin-bottom: 0.2rem;
+    }
+    &__list {
+      background-color: $navy-gray-chain;
+      padding: 1rem;
+      width: fit-content;
+      border: solid 2px $navy-chain-outline;
+      border-radius: 10px;
+    }
+    &__img {
+      width: 100px;
+      height: 41px;
+    }
   }
 }
