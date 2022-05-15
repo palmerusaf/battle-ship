@@ -10,7 +10,7 @@ export function newGridAreaFor(playerName) {
   gridArea.appendChild(gridLabel);
 
   const grid = Components.newGrid();
-  grid.addParentClass("battle-grid");
+  grid.addParentClass("grid-area__grid");
   if (playerName === "Enemy") grid.setClickable();
   gridArea.appendChild(grid.render());
 

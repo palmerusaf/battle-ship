@@ -1,2 +1,46 @@
-@import './variables.scss'
+@import "./variables.scss";
 
+.battle-screen {
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: 1fr;
+  height: 100%;
+  width: 100%;
+}
+.ship-area {
+  display: none;
+}
+.grid-area {
+  display: flex;
+  flex-direction: column;
+  place-self: center;
+  align-items: center;
+  &__label {
+    font-family: "Mil Stencil";
+    color: $navy-gray-chain;
+    font-size: 1.7rem;
+    margin-bottom: 0.3rem;
+    text-align: center;
+  }
+  &__grid {
+    $size: 75vmin;
+    width: $size;
+    height: $size;
+  }
+}
+@media screen and (orientation: landscape) {
+  .battle-screen {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+  }
+  .grid-area {
+    flex-direction: row;
+    &__label {
+      margin: 0;
+      width: 6.5rem;
+    }
+  }
+  .footer {
+    display: none;
+  }
+}
