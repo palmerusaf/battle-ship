@@ -1,5 +1,6 @@
 import "../styles/title-screen.scss";
-import { Components } from "../modules/components";
+import { Components } from "./components";
+import { Interface } from "./interface";
 
 export function titleScreen() {
   const content = document.querySelector(".content");
@@ -14,6 +15,8 @@ export function titleScreen() {
   titleScreen.appendChild(title);
 
   const playButton = Components.newButton("Start Game");
+  playButton.addEventListener("click", Interface.startGameClick);
   playButton.classList.add("play-button");
+
   titleScreen.appendChild(playButton);
 }

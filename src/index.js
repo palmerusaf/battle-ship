@@ -1,5 +1,6 @@
 import "./styles/footer.scss";
 import "./styles/reset.scss";
-import { battleScreen } from "./modules/battle-screen";
+import { Render } from "./modules/render";
 
-battleScreen()
+Render.battleScreen()
+Render.gameOverScreen()

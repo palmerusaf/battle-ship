@@ -1,5 +1,6 @@
 import "../styles/ship-placement-screen.scss";
-import { Components } from "../modules/components";
+import { Components } from "./components";
+import { Interface } from "./interface";
 
 export function shipPlacementScreen() {
   const content = document.querySelector(".content");
@@ -24,18 +25,22 @@ export function shipPlacementScreen() {
   shipPlacementScreen.appendChild(buttonField);
 
   const flipShipButton = Components.newButton("Flip Ship");
+  flipShipButton.addEventListener("click", Interface.flipShipClick);
   buttonField.appendChild(flipShipButton);
 
   const reset = Components.newButton("Reset");
+  reset.addEventListener("click", Interface.resetClick);
   buttonField.appendChild(reset);
 
   const placementGrid = Components.newGrid();
   placementGrid.setClickable();
   placementGrid.addParentClass("placement-grid");
   placementGrid.setCoordinateHoverMsg("Place Ship at");
+  placementGrid.addEventToElements("click", Interface.placementGridClick);
   shipPlacementScreen.appendChild(placementGrid.render());
 
   const continueButton = Components.newButton("Continue");
   continueButton.classList.add("continue");
+  continueButton.addEventListener("click", Interface.continueClick);
   shipPlacementScreen.appendChild(continueButton);
 }

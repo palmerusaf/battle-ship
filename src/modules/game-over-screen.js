@@ -1,5 +1,6 @@
 import "../styles/game-over-screen.scss";
 import { Components } from "./components";
+import { Interface } from "./interface";
 
 export function gameOverScreen(isWinner) {
   const content = document.querySelector(".content");
@@ -22,9 +23,11 @@ export function gameOverScreen(isWinner) {
   buttonField.classList.add("game-over__button-field");
   gameOverContainer.appendChild(buttonField);
 
-  const restartButton = Components.newButton("Play Again?");
-  buttonField.appendChild(restartButton);
+  const playAgainButton = Components.newButton("Play Again?");
+  playAgainButton.addEventListener("click", Interface.playAgainClick);
+  buttonField.appendChild(playAgainButton);
 
   const quitButton = Components.newButton("Quit");
+  quitButton.addEventListener("click", Interface.quitClick);
   buttonField.appendChild(quitButton);
 }
