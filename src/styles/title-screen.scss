@@ -1,0 +1,19 @@
+@import "../styles/variables.scss";
+
+.title-screen {
+  height: 100%;
+  display: grid;
+}
+.title {
+  align-self: end;
+  justify-self: center;
+  font-weight: bold;
+  font-size: 2.9rem;
+  color: $navy-gold;
+  margin-bottom: 1rem;
+  font-family: "Special Elite";
+}
+.play-button {
+  align-self: start;
+  justify-self: center;
+}

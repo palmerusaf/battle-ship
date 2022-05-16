@@ -1,0 +1,60 @@
+@import "./variables.scss";
+
+.ship-placement-screen {
+  display: grid;
+  height: 100%;
+  font-family: "Mil Stencil";
+  align-items: center;
+  grid-template-rows: repeat(3, 1fr) 5fr 1fr;
+  place-items: center;
+}
+.welcome-msg {
+  font-size: 2rem;
+  color: $navy-chain-outline;
+}
+.directions {
+  color: $navy-gray-chain;
+  margin: 0 2rem;
+  text-align: center;
+}
+.button-field {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  gap: 1rem;
+}
+.placement-grid {
+  width: 95vmin;
+  height: 95vmin;
+  max-width: 500px;
+  max-height: 500px;
+}
+@media screen and (orientation: landscape) and (max-height: 500px) {
+  .ship-placement-screen {
+    grid-template-rows: 0.7fr auto auto;
+    grid-template-columns: 1fr 1.5fr 1fr;
+  }
+  .welcome-msg {
+    grid-column: 1/-1;
+  }
+  .directions {
+    grid-row: 2/-1;
+  }
+  .placement-grid {
+    grid-row: 2/-1;
+    width: 65vmin;
+    height: 65vmin;
+    align-self: start;
+  }
+  .continue {
+    align-self: start;
+  }
+}
+@media screen and (min-width: 500px) and (min-height: 376px) {
+  .welcome-msg {
+    font-size: 4rem;
+  }
+  .directions {
+    font-size: 1.5rem;
+  }
+}

@@ -1,0 +1,27 @@
+@import "../styles/variables.scss";
+
+.button {
+  font-size: 1.2rem;
+  padding: 0.4rem 1rem;
+  background-color: $navy-gray-chain;
+  border-radius: 50px;
+  border: none;
+  border: $navy-chain-outline solid 2px;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  &__element {
+    border: solid 1px $navy-chain-outline;
+    background-color: $navy-gray-chain;
+  }
+}
+.clickable {
+  cursor: pointer;
+  transition: 300ms;
+  &:hover {
+    transform: scale(1.08);
+    transition: 300ms;
+  }
+}
