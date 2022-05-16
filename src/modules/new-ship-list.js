@@ -1,3 +1,5 @@
+import { indexToShipName } from "./index-to-ship-name";
+
 export function newShipListFor(playerName) {
   const shipArea = document.createElement("div");
   shipArea.classList.add("ship-area", `ship-area--${playerName}`);
@@ -25,16 +27,9 @@ export function newShipListFor(playerName) {
       shipList.appendChild(shipItem);
 
       const shipImg = document.createElement("img");
-      shipImg.src = `/src/imgs/${mapShipTo(i)}.png`;
+      shipImg.src = `/src/imgs/${indexToShipName(i)}.png`;
       shipImg.classList.add("ship-area__img");
       shipItem.appendChild(shipImg);
-    }
-    function mapShipTo(index) {
-      if (index === 0) return "carrier";
-      if (index === 1) return "battleship";
-      if (index === 2) return "cruiser";
-      if (index === 3 || index === 4) return "destroyer";
-      if (index === 5 || index === 6) return "submarine";
     }
   }
 }
