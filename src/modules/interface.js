@@ -16,11 +16,14 @@ export const Interface = (() => {
   }
 
   function placementGridClick(e) {
-    console.log("TO DO handle click for placement grid at ", e);
+    console.log(
+      "TO DO handle click for placement grid at",
+      _getIndexOf(e.target)
+    );
   }
 
   function enemyGridClick(e) {
-    console.log("TO DO handle click for enemy grid at ", e);
+    console.log("TO DO handle click for enemy grid at", _getIndexOf(e.target));
   }
 
   function playAgainClick() {
@@ -28,7 +31,13 @@ export const Interface = (() => {
   }
 
   function quitClick() {
-    console.log("TO DO handle quit click.");
+    window.open("", "_self").document.write("");
+    window.open("", "_self").close();
+    window.location.href = "https://github.com/palmerusaf/battle-ship";
+  }
+
+  function _getIndexOf(pTarget) {
+    return Array.from(pTarget.parentElement.children).indexOf(pTarget);
   }
 
   return {
