@@ -1,6 +1,9 @@
+import { Render } from "./render";
+
 export const Interface = (() => {
   function startGameClick() {
-    console.log("TO DO handle start game click.");
+    Render.clearContent();
+    Render.shipPlacementScreen();
   }
 
   function flipShipClick() {
@@ -27,7 +30,8 @@ export const Interface = (() => {
   }
 
   function playAgainClick() {
-    console.log("TO DO handle play again click.");
+    Render.clearContent();
+    Render.titleScreen();
   }
 
   function quitClick() {
