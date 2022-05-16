@@ -4,4 +4,4 @@ import { battleScreen } from "./modules/battle-screen";
 import { gameOverScreen } from "./modules/game-over-screen";
 
 battleScreen();
-gameOverScreen();
+gameOverScreen(true);

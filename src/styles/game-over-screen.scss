@@ -1,0 +1,37 @@
+@import "./variables.scss";
+
+.content {
+  position: relative;
+}
+.game-over {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  background-color: $navy-gray-chain;
+  padding: 1.6rem;
+  width: 18rem;
+  height: 13rem;
+  border: solid 3px $navy-chain-outline;
+  border-radius: 15px;
+  opacity: 0.92;
+  align-items: center;
+  justify-content: space-evenly;
+  &__title {
+    font-family: "Special Elite";
+    font-size: 3.4rem;
+    color: $navy-brown-eagle;
+  }
+  &__winner-msg {
+    font-family: "Mil Stencil";
+    font-size: 2rem;
+    color: $navy-brown-outline;
+  }
+  &__button-field {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+  }
+}
