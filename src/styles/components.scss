@@ -10,11 +10,41 @@
 }
 .grid-container {
   display: grid;
+  position: relative;
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(10, 1fr);
   &__element {
     border: solid 1px $navy-chain-outline;
     background-color: $navy-gray-chain;
+  }
+  &__ship {
+    position: absolute;
+    height: 10%;
+    z-index: 99;
+    &--rotated {
+      transform-origin: bottom left;
+      transform: rotate(90deg);
+      top: -10%;
+    }
+  }
+}
+.ship-index {
+  &-0 {
+    width: 50%;
+  }
+  &-1 {
+    width: 40%;
+  }
+  &-2 {
+    width: 30%;
+  }
+  &-3,
+  &-4 {
+    width: 20%;
+  }
+  &-5,
+  &-6 {
+    width: 10%;
   }
 }
 .clickable {

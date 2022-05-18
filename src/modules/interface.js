@@ -1,4 +1,5 @@
 import { Render } from "./render";
+import { pubsub } from "./pubsub";
 
 export const Interface = (() => {
   function startGameClick() {
@@ -7,7 +8,7 @@ export const Interface = (() => {
   }
 
   function flipShipClick() {
-    console.log("TO DO handle flip ship click.");
+    pubsub.publish("flipShipClick");
   }
 
   function resetClick() {

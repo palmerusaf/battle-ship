@@ -1,3 +1,4 @@
+import { indexToShipName } from "./index-to-ship-name";
 export function newGrid() {
   const GRID_SIZE = 100;
   const gridContainer = initGridWithElements();
@@ -54,6 +55,14 @@ export function newGrid() {
     );
   }
 
+  function addShipToGrid(coordinate, shipIndex, axis) {
+    const ship = document.createElement("img");
+    ship.classList.add("grid-container__ship",`ship-index-${shipIndex}`);
+    if (axis === "y") ship.classList.add("grid-container__ship--rotated");
+    ship.src = `/src/imgs/${indexToShipName(shipIndex)}.png`;
+    gridContainer.children[coordinate].appendChild(ship);
+  }
+
   return {
     render,
     setClickable,
@@ -61,5 +70,6 @@ export function newGrid() {
     addParentClass,
     addChildClass,
     addEventToElements,
+    addShipToGrid,
   };
 }
