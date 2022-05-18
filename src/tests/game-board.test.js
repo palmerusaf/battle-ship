@@ -25,6 +25,38 @@ function attackShipPlacedHorizontally(startingCoordinate, shipLength) {
   }
 }
 
+describe("toggle and get for placementAxis", () => {
+  it("newBoard.getPlacementAxis Test -- axis defaults to x", () => {
+    expect(newBoard.getPlacementAxis()).toBe("x");
+  });
+
+  it("togglePlacementAxis Test -- togglePlacementAxis changes axis", () => {
+    newBoard.togglePlacementAxis();
+    expect(newBoard.getPlacementAxis()).toBe("y");
+    newBoard.togglePlacementAxis();
+    expect(newBoard.getPlacementAxis()).toBe("x");
+  });
+
+  it("togglePlacementAxis changes how ships are placed", () => {
+    newBoard.togglePlacementAxis()
+    newBoard.placeShip(0);
+    expect(newBoard.getCoordinateStatus(0)).toEqual({
+      isPlayed: false,
+      shipIndex: 0,
+    });
+
+    expect(newBoard.getCoordinateStatus(2)).toEqual({
+      isPlayed: false,
+      shipIndex: "none",
+    });
+
+    expect(newBoard.getCoordinateStatus(40)).toEqual({
+      isPlayed: false,
+      shipIndex: 0,
+    });
+  });
+});
+
 it("GameBoard.getCoordinateStatus Test -- returns all required info", () => {
   expect(newBoard.getCoordinateStatus(0)).toEqual({
     isPlayed: false,

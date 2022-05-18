@@ -26,6 +26,7 @@ export function shipPlacementScreen() {
 
   const flipShipButton = Components.newButton("Flip Ship");
   flipShipButton.addEventListener("click", Interface.flipShipClick);
+  flipShipButton.dataset.axis = "x";
   buttonField.appendChild(flipShipButton);
 
   const reset = Components.newButton("Reset");

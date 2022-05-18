@@ -5,31 +5,30 @@ const GRID_SIZE = 100;
 export function GameBoard() {
   const _grid = buildGrid(GRID_SIZE);
   const _fleet = ShipFleet();
-  let _shipsPlaced = 0;
+  let _placementIndex = 0;
+  let _placementAxis = "x";
 
   const getCoordinateStatus = (index) => _grid[index];
 
-  const placeShip = (startingCoordinate, axis) => {
-    const shipIndex = _shipsPlaced;
-
+  const placeShip = (startingCoordinate, axis = getPlacementAxis()) => {
     setShipCoordinates();
     updateGridWithShipIndex();
-    _shipsPlaced++;
+    _placementIndex++;
 
     function updateGridWithShipIndex() {
-      const shipCoordinates = _fleet[shipIndex].getCoordinates();
+      const shipCoordinates = _fleet[_placementIndex].getCoordinates();
       shipCoordinates.forEach(
-        (coordinate) => (_grid[coordinate].shipIndex = shipIndex)
+        (coordinate) => (_grid[coordinate].shipIndex = _placementIndex)
       );
     }
 
     function setShipCoordinates() {
-      _fleet[shipIndex].setCoordinates(startingCoordinate, axis);
+      _fleet[_placementIndex].setCoordinates(startingCoordinate, axis);
     }
   };
 
   const isIllegalShipPlacement = (startingCoordinate, axis) => {
-    const shipIndex = _shipsPlaced;
+    const shipIndex = _placementIndex;
     return overFlowsGrid() || placedOnAnotherShip();
 
     function overFlowsGrid() {
@@ -54,7 +53,7 @@ export function GameBoard() {
     }
   };
   const areAllShipsPlaced = () => {
-    return _shipsPlaced === _fleet.length;
+    return _placementIndex === _fleet.length;
   };
 
   const receiveAttack = (coordinate) => {
@@ -109,6 +108,11 @@ export function GameBoard() {
     }
   };
 
+  const getPlacementAxis = () => _placementAxis;
+
+  const togglePlacementAxis = () =>
+    _placementAxis === "x" ? (_placementAxis = "y") : (_placementAxis = "x");
+
   return {
     getCoordinateStatus,
     placeShip,
@@ -117,6 +121,8 @@ export function GameBoard() {
     placeAllShipsAtRandomCoordinates,
     receiveAttack,
     isFleetSunk,
+    getPlacementAxis,
+    togglePlacementAxis,
   };
 }
 
