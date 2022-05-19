@@ -57,10 +57,16 @@ export function newGrid() {
 
   function addShipToGrid(coordinate, shipIndex, axis) {
     const ship = document.createElement("img");
-    ship.classList.add("grid-container__ship",`ship-index-${shipIndex}`);
+    ship.classList.add("grid-container__ship", `ship-index-${shipIndex}`);
     if (axis === "y") ship.classList.add("grid-container__ship--rotated");
     ship.src = `/src/imgs/${indexToShipName(shipIndex)}.png`;
     gridContainer.children[coordinate].appendChild(ship);
+    gridContainer.children[coordinate].classList.remove("clickable");
+  }
+
+  function resetShips() {
+    _modElements((gridElement) => (gridElement.textContent = ""));
+    setClickable();
   }
 
   return {
@@ -71,5 +77,6 @@ export function newGrid() {
     addChildClass,
     addEventToElements,
     addShipToGrid,
+    resetShips,
   };
 }
