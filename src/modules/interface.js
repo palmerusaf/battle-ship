@@ -12,25 +12,23 @@ export const Interface = (() => {
   }
 
   function resetClick() {
-    console.log("TO DO handle reset click.");
+    pubsub.publish("resetClick");
   }
 
   function continueClick() {
-    console.log("TO DO handle continue click.");
+    pubsub.publish("continueClick");
   }
 
   function placementGridClick(e) {
-    console.log(
-      "TO DO handle click for placement grid at",
-      _getIndexOf(e.target)
-    );
+    pubsub.publish("placementGridClick", _getIndexOf(e.target));
   }
 
   function enemyGridClick(e) {
-    console.log("TO DO handle click for enemy grid at", _getIndexOf(e.target));
+    pubsub.publish("enemyGridClick", _getIndexOf(e.target));
   }
 
   function playAgainClick() {
+    pubsub.publish("playAgainClick");
     Render.clearContent();
     Render.titleScreen();
   }

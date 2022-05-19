@@ -54,6 +54,9 @@
     &__grid {
       width: 400px;
       height: 400px;
+      .clickable {
+        cursor: crosshair;
+      }
     }
   }
   .ship-area {
