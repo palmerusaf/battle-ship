@@ -2,7 +2,7 @@ import { GameBoard } from "../modules/game-board";
 import { pubsub } from "../modules/pubsub";
 
 let newBoard;
-beforeEach(() => (newBoard = GameBoard()));
+beforeEach(() => (newBoard = GameBoard("Player")));
 
 function placeAllShipHorizontally() {
   newBoard.placeShip(0, "x");
@@ -38,7 +38,7 @@ describe("toggle and get for placementAxis", () => {
   });
 
   it("togglePlacementAxis changes how ships are placed", () => {
-    newBoard.togglePlacementAxis()
+    newBoard.togglePlacementAxis();
     newBoard.placeShip(0);
     expect(newBoard.getCoordinateStatus(0)).toEqual({
       isPlayed: false,
@@ -218,12 +218,16 @@ it("Sinking ship publishes report", () => {
   attackShipPlacedHorizontally(0, 5);
   expect(sinkingReport).toEqual({
     shipIndex: 0,
-    shipCoordinates: [0, 1, 2, 3, 4],
+    startingCoordinate: 0,
+    playerName: "Player",
+    axis: "x",
   });
   attackShipPlacedHorizontally(10, 4);
   expect(sinkingReport).toEqual({
     shipIndex: 1,
-    shipCoordinates: [10, 11, 12, 13],
+    startingCoordinate: 10,
+    playerName: "Player",
+    axis: "x",
   });
 });
 

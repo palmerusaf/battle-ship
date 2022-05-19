@@ -2,9 +2,10 @@ import { ShipFleet } from "./ship-fleet";
 import { pubsub } from "./pubsub";
 
 const GRID_SIZE = 100;
-export function GameBoard() {
+export function GameBoard(pName) {
   const _grid = buildGrid(GRID_SIZE);
   const _fleet = ShipFleet();
+  const _playerName = pName;
   let _placementIndex = 0;
   let _placementAxis = "x";
 
@@ -72,8 +73,10 @@ export function GameBoard() {
 
       function publishShipSinking() {
         pubsub.publish("shipHasSunk", {
-          shipCoordinates: shipToAttack.getCoordinates(),
+          startingCoordinate: shipToAttack.getStartingCoordinate(),
           shipIndex: shipIndex,
+          playerName: _playerName,
+          axis: shipToAttack.getAxis(),
         });
       }
     }
@@ -111,7 +114,7 @@ export function GameBoard() {
   const getPlacementAxis = () => _placementAxis;
 
   const togglePlacementAxis = () =>
-    _placementAxis === "x" ? (_placementAxis = "y") : (_placementAxis = "x");
+    (_placementAxis = _placementAxis === "x" ? "y" : "x");
 
   return {
     getCoordinateStatus,
