@@ -1,4 +1,5 @@
 import "../styles/battle-screen.scss";
+import { pubsub } from "./pubsub";
 import { newGridAreaFor } from "./new-grid-area";
 import { newShipListFor } from "./new-ship-list";
 
@@ -14,4 +15,13 @@ export function battleScreen() {
 
   battleScreen.appendChild(newGridAreaFor("Player"));
   battleScreen.appendChild(newShipListFor("Player"));
+
+  function eraseShipFromList(data) {
+    const { playerName, shipIndex } = data;
+    const ship = document.querySelector(
+      `.${playerName}-ship-list-item-${shipIndex}`
+    );
+    ship.classList.add("sunk");
+  }
+  pubsub.subscribe("shipHasSunk", eraseShipFromList);
 }

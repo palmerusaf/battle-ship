@@ -8,9 +8,9 @@ export const Render = (() => {
     document.querySelector(".content").textContent = "";
   }
 
-  function attack(playerType, coordinate, isHit) {
+  function attack(playerName, coordinate, isHit) {
     const gridContainer = document.querySelector(
-      `.grid-area--${playerType} > .grid-area__grid`
+      `.grid-area--${playerName} > .grid-area__grid`
     );
     playBombAnimation(thenMarkHitOrMiss);
 

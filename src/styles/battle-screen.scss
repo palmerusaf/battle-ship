@@ -63,7 +63,6 @@
     align-items: center;
     &--Player {
       grid-area: 2;
-      
     }
     &__label {
       font-family: "Mil Stencil";
@@ -81,6 +80,10 @@
     &__img {
       width: 100px;
       height: 41px;
+    }
+    .sunk {
+      transition: 500ms;
+      opacity: 0;
     }
   }
 }
