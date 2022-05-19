@@ -7,4 +7,4 @@ import { pubsub } from "./modules/pubsub";
 const enemyGameBoard = GameBoard();
 const playerGameBoard = GameBoard();
 pubsub.subscribe("flipShipClick", playerGameBoard.togglePlacementAxis);
-Render.shipPlacementScreen();
+Render.battleScreen();

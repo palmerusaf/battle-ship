@@ -11,13 +11,14 @@ export function newGridAreaFor(playerName) {
   gridArea.appendChild(gridLabel);
 
   const grid = Components.newGrid();
-  if (playerName === "Enemy") addEnemyAttributes(grid);
+  if (playerName === "Enemy") addEnemyAttributes();
   grid.addParentClass("grid-area__grid");
   gridArea.appendChild(grid.render());
 
-  function addEnemyAttributes(pGrid) {
-    pGrid.setClickable();
-    pGrid.addEventToElements("click", Interface.enemyGridClick);
+  function addEnemyAttributes() {
+    grid.setClickable();
+    grid.addEventToElements("click", Interface.enemyGridClick);
+    grid.setCoordinateHoverMsg("Attack coordinate");
   }
 
   return gridArea;

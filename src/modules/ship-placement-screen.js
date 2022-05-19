@@ -38,14 +38,6 @@ export function shipPlacementScreen() {
   placementGrid.addParentClass("placement-grid");
   placementGrid.setCoordinateHoverMsg("Place Ship at");
   placementGrid.addEventToElements("click", Interface.placementGridClick);
-  placementGrid.addShipToGrid(90, 0, "x");
-  placementGrid.addShipToGrid(1, 1, "y");
-  placementGrid.addShipToGrid(2, 2, "y");
-  placementGrid.addShipToGrid(3, 3, "y");
-  placementGrid.addShipToGrid(4, 4, "y");
-  placementGrid.addShipToGrid(5, 5, "y");
-  placementGrid.addShipToGrid(6, 6, "y");
-  placementGrid.resetShips();
   shipPlacementScreen.appendChild(placementGrid.render());
 
   const continueButton = Components.newButton("Continue");
