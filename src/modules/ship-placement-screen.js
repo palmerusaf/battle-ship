@@ -1,6 +1,7 @@
 import "../styles/ship-placement-screen.scss";
 import { Components } from "./components";
 import { Interface } from "./interface";
+import { pubsub } from "./pubsub";
 
 export function shipPlacementScreen() {
   const content = document.querySelector(".content");
@@ -38,6 +39,8 @@ export function shipPlacementScreen() {
   placementGrid.addParentClass("placement-grid");
   placementGrid.setCoordinateHoverMsg("Place Ship at");
   placementGrid.addEventToElements("click", Interface.placementGridClick);
+  pubsub.subscribe("resetClick", placementGrid.resetShips);
+  pubsub.subscribe("addShipToPlacementGrid", placementGrid.addShipToGrid);
   shipPlacementScreen.appendChild(placementGrid.render());
 
   const continueButton = Components.newButton("Continue");

@@ -23,5 +23,6 @@ export function Ship(length) {
         else coordinates.push(pStartingPosition + i);
       }
     },
+    resetCoordinates: () => (coordinates = []),
   };
 }

@@ -39,7 +39,7 @@ export function GameBoard(pName) {
       function overFlowsGridOnXAxis() {
         if (axis !== "x") return false;
         const firstDigitOfStartingCoordinate = startingCoordinate % 10;
-        return shipLength + firstDigitOfStartingCoordinate >= 10;
+        return shipLength + firstDigitOfStartingCoordinate - 1 >= 10;
       }
 
       function overFlowsGridOnYAxis() {
@@ -116,8 +116,13 @@ export function GameBoard(pName) {
   const togglePlacementAxis = () =>
     (_placementAxis = _placementAxis === "x" ? "y" : "x");
 
-  const resetPlacement = () =>
+  const resetPlacement = () => {
+    _placementIndex = 0;
     _grid.forEach((item) => (item.shipIndex = "none"));
+    _fleet.forEach((ship) => ship.resetCoordinates());
+  };
+
+  const getPlacementIndex = () => _placementIndex;
 
   return {
     getCoordinateStatus,
@@ -128,6 +133,7 @@ export function GameBoard(pName) {
     receiveAttack,
     isFleetSunk,
     getPlacementAxis,
+    getPlacementIndex,
     togglePlacementAxis,
     resetPlacement,
   };

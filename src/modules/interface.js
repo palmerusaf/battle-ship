@@ -40,6 +40,9 @@ export const Interface = (() => {
   }
 
   function _getIndexOf(pTarget) {
+    if (!pTarget.classList.contains("grid-container__element"))
+      pTarget = pTarget.parentElement;
+    console.log(pTarget);
     return Array.from(pTarget.parentElement.children).indexOf(pTarget);
   }
 

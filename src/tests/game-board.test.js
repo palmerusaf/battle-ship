@@ -165,6 +165,11 @@ describe("Ship placement tests", () => {
     expect(newBoard.isIllegalShipPlacement(1, "y")).toBe(true);
   });
 
+  it("newBoard.isIllegalShipPlacement Test -- place ships on other ships returns true", () => {
+    newBoard.placeShip(1, "y");
+    expect(newBoard.isIllegalShipPlacement(1, "y")).toBe(true);
+  });
+
   it("newBoard.isIllegalShipPlacement Test -- place ship in coordinates that will overflow grid horizontally returns true", () => {
     expect(newBoard.isIllegalShipPlacement(6, "x")).toBe(true);
     expect(newBoard.isIllegalShipPlacement(6, "y")).toBe(false);

@@ -55,7 +55,8 @@ export function newGrid() {
     );
   }
 
-  function addShipToGrid(coordinate, shipIndex, axis) {
+  function addShipToGrid(placementData) {
+    const { coordinate, shipIndex, axis } = placementData;
     const ship = document.createElement("img");
     ship.classList.add("grid-container__ship", `ship-index-${shipIndex}`);
     if (axis === "y") ship.classList.add("grid-container__ship--rotated");
