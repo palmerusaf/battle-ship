@@ -116,6 +116,9 @@ export function GameBoard(pName) {
   const togglePlacementAxis = () =>
     (_placementAxis = _placementAxis === "x" ? "y" : "x");
 
+  const resetPlacement = () =>
+    _grid.forEach((item) => (item.shipIndex = "none"));
+
   return {
     getCoordinateStatus,
     placeShip,
@@ -126,6 +129,7 @@ export function GameBoard(pName) {
     isFleetSunk,
     getPlacementAxis,
     togglePlacementAxis,
+    resetPlacement,
   };
 }
 

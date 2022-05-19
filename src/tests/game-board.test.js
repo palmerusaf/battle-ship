@@ -195,6 +195,52 @@ describe("Ship placement tests", () => {
     newBoard.placeShip(6, "y");
     expect(newBoard.areAllShipsPlaced()).toBe(true);
   });
+
+  it("resetPlacement resets one ship placed", () => {
+    newBoard.placeShip(0, "x");
+    expect(newBoard.getCoordinateStatus(0)).toEqual({
+      isPlayed: false,
+      shipIndex: 0,
+    });
+    newBoard.resetPlacement();
+    expect(newBoard.getCoordinateStatus(0)).toEqual({
+      isPlayed: false,
+      shipIndex: "none",
+    });
+  });
+
+  it("resetPlacement resets all ships placed", () => {
+    placeAllShipHorizontally();
+    newBoard.resetPlacement();
+    expect(newBoard.getCoordinateStatus(0)).toEqual({
+      isPlayed: false,
+      shipIndex: "none",
+    });
+    expect(newBoard.getCoordinateStatus(10)).toEqual({
+      isPlayed: false,
+      shipIndex: "none",
+    });
+    expect(newBoard.getCoordinateStatus(20)).toEqual({
+      isPlayed: false,
+      shipIndex: "none",
+    });
+    expect(newBoard.getCoordinateStatus(30)).toEqual({
+      isPlayed: false,
+      shipIndex: "none",
+    });
+    expect(newBoard.getCoordinateStatus(40)).toEqual({
+      isPlayed: false,
+      shipIndex: "none",
+    });
+    expect(newBoard.getCoordinateStatus(50)).toEqual({
+      isPlayed: false,
+      shipIndex: "none",
+    });
+    expect(newBoard.getCoordinateStatus(60)).toEqual({
+      isPlayed: false,
+      shipIndex: "none",
+    });
+  });
 });
 
 it("placeAllShipsAtRandomCoordinates causes areAllShipsPlaced to return true", () => {
