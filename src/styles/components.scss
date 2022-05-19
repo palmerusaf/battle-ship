@@ -48,10 +48,35 @@
   }
 }
 .clickable {
-  cursor: pointer;
+  cursor: crosshair;
   transition: 300ms;
   &:hover {
     transform: scale(1.08);
     transition: 300ms;
+  }
+}
+.attack-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  user-select: none;
+  &__bomb {
+    animation: dropIn 600ms;
+    @keyframes dropIn {
+      0% {
+        transform: scale(20);
+        opacity: 0;
+      }
+      25%,
+      75% {
+        opacity: 1;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 0;
+      }
+    }
   }
 }

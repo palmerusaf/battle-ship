@@ -69,10 +69,6 @@ export function newGrid() {
     setClickable();
   }
 
-  function recieveAttack(params) {
-    
-  }
-
   return {
     render,
     setClickable,
