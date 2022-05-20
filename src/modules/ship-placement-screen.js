@@ -31,16 +31,19 @@ export function shipPlacementScreen() {
   buttonField.appendChild(flipShipButton);
 
   const reset = Components.newButton("Reset");
-  reset.addEventListener("click", Interface.resetClick);
+  reset.addEventListener("click", () => Interface.resetClick(placementGrid));
   buttonField.appendChild(reset);
 
   const placementGrid = Components.newGrid();
   placementGrid.setClickable();
   placementGrid.addParentClass("placement-grid");
   placementGrid.setCoordinateHoverMsg("Place Ship at");
-  placementGrid.addEventToElements("click", Interface.placementGridClick);
-  pubsub.subscribe("resetClick", placementGrid.resetShips);
-  pubsub.subscribe("addShipToPlacementGrid", placementGrid.addShipToGrid);
+  placementGrid.addEventToElements("click", (e) =>
+    Interface.placementGridClick({
+      target: e.target,
+      displayGrid: placementGrid,
+    })
+  );
   shipPlacementScreen.appendChild(placementGrid.render());
 
   const continueButton = Components.newButton("Continue");

@@ -1,33 +1,45 @@
 import { Render } from "./render";
 import { pubsub } from "./pubsub";
+import { GameBoard } from "./game-board";
 
 export const Interface = (() => {
+  const enemyGameBoard = GameBoard("Enemy");
+  enemyGameBoard.placeAllShipsAtRandomCoordinates();
+  const playerGameBoard = GameBoard("Player");
+
   function startGameClick() {
     Render.clearContent();
     Render.shipPlacementScreen();
   }
 
-  function flipShipClick() {
-    document
-      .querySelector(".flip-button")
-      .classList.toggle("flip-button--flipped");
-    pubsub.publish("flipShipClick");
+  function flipShipClick(e) {
+    playerGameBoard.togglePlacementAxis();
+    e.target.classList.toggle("flip-button--flipped");
   }
 
-  function resetClick() {
-    pubsub.publish("resetClick");
+  function resetClick(displayGrid) {
+    displayGrid.resetShips();
+    playerGameBoard.resetPlacement();
   }
 
   function continueClick() {
-    pubsub.publish("continueClick");
+    if (!playerGameBoard.areAllShipsPlaced()) return;
+    Render.clearContent();
+    Render.battleScreen();
   }
 
-  function placementGridClick(e) {
-    pubsub.publish("placementGridClick", _getIndexOf(e.target));
+  function placementGridClick({ target, displayGrid }) {
+    const coordinate = _getIndexOf(target);
+    if (playerGameBoard.areAllShipsPlaced()) return;
+    const axis = playerGameBoard.getPlacementAxis();
+    if (playerGameBoard.isIllegalShipPlacement(coordinate, axis)) return;
+    const shipIndex = playerGameBoard.getPlacementIndex();
+    playerGameBoard.placeShip(coordinate);
+    displayGrid.addShipToGrid({ coordinate, axis, shipIndex });
   }
 
-  function enemyGridClick(e) {
-    pubsub.publish("enemyGridClick", _getIndexOf(e.target));
+  function enemyGridClick({ target, enemyDisplayGrid,playerDisplayGrid }) {
+    pubsub.publish("enemyGridClick", _getIndexOf(target));
   }
 
   function playAgainClick() {
