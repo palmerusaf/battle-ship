@@ -25,7 +25,7 @@ export const Interface = (() => {
   function continueClick() {
     if (!playerGameBoard.areAllShipsPlaced()) return;
     Render.clearContent();
-    Render.battleScreen();
+    Render.battleScreen(playerGameBoard.getFleetLocationInfo());
   }
 
   function placementGridClick({ target, displayGrid }) {

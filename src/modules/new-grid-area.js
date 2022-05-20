@@ -1,7 +1,7 @@
 import { Components } from "./components";
 import { Interface } from "./interface";
 
-export function newGridAreaFor(playerName) {
+export function newGridAreaFor(playerName, pFleetLocationInfo) {
   const gridArea = document.createElement("div");
   gridArea.classList.add("grid-area", `grid-area--${playerName}`);
 
@@ -12,8 +12,17 @@ export function newGridAreaFor(playerName) {
 
   const grid = Components.newGrid();
   if (playerName === "Enemy") addEnemyAttributes();
+  else {
+    renderShips();
+  }
   grid.addParentClass("grid-area__grid");
   gridArea.appendChild(grid.render());
+
+  function renderShips() {
+    pFleetLocationInfo.forEach((shipLocation) =>
+      grid.addShipToGrid(shipLocation)
+    );
+  }
 
   function addEnemyAttributes() {
     grid.setClickable();

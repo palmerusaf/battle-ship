@@ -4,7 +4,7 @@ import { newGridAreaFor } from "./new-grid-area";
 import { newShipListFor } from "./new-ship-list";
 import { Render } from "./render";
 
-export function battleScreen() {
+export function battleScreen(pFleetLocationInfo) {
   const content = document.querySelector(".content");
 
   const battleScreen = document.createElement("div");
@@ -14,7 +14,7 @@ export function battleScreen() {
   battleScreen.appendChild(newGridAreaFor("Enemy"));
   battleScreen.appendChild(newShipListFor("Enemy"));
 
-  battleScreen.appendChild(newGridAreaFor("Player"));
+  battleScreen.appendChild(newGridAreaFor("Player", pFleetLocationInfo));
   battleScreen.appendChild(newShipListFor("Player"));
 
   function eraseShipFromList(data) {
