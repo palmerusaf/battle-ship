@@ -1,6 +1,6 @@
 @import "./variables.scss";
 
-.ship-placement-screen {
+.placement-screen {
   display: grid;
   height: 100%;
   font-family: "Mil Stencil";
@@ -37,7 +37,7 @@
   max-height: 500px;
 }
 @media screen and (orientation: landscape) and (max-height: 500px) {
-  .ship-placement-screen {
+  .placement-screen {
     grid-template-rows: 0.7fr auto auto;
     grid-template-columns: 1fr 1.5fr 1fr;
   }

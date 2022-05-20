@@ -1,6 +1,7 @@
 import "/src/styles/placement-screen.scss";
 import { Components } from "/src/modules/components";
 import { Interface } from "/src/modules/interface";
+import { pubsub } from "/src/modules/pubsub";
 
 export const shipPlacementScreen = () => {
   const content = document.querySelector(".content");
