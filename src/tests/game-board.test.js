@@ -332,3 +332,16 @@ it("newBoard.isFleetSunk Test -- sinking all ship changes isFleetSunk", () => {
   attackShipPlacedHorizontally(60, 1);
   expect(newBoard.isFleetSunk()).toBe(true);
 });
+
+it("getFleetLocationInfo test", () => {
+  placeAllShipHorizontally();
+  expect(newBoard.getFleetLocationInfo()).toEqual([
+    { coordinate: 0, shipIndex: 0, axis: "x" },
+    { coordinate: 10, shipIndex: 1, axis: "x" },
+    { coordinate: 20, shipIndex: 2, axis: "x" },
+    { coordinate: 30, shipIndex: 3, axis: "x" },
+    { coordinate: 40, shipIndex: 4, axis: "x" },
+    { coordinate: 50, shipIndex: 5, axis: "x" },
+    { coordinate: 60, shipIndex: 6, axis: "x" },
+  ]);
+});

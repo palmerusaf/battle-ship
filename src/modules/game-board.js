@@ -127,6 +127,15 @@ export function GameBoard(pName) {
 
   const getPlacementIndex = () => _placementIndex;
 
+  const getFleetLocationInfo = () =>
+    _fleet.map((ship, index) => {
+      return {
+        coordinate: ship.getStartingCoordinate(),
+        shipIndex: index,
+        axis: ship.getAxis(),
+      };
+    });
+
   return {
     getCoordinateStatus,
     placeShip,
@@ -139,6 +148,7 @@ export function GameBoard(pName) {
     getPlacementIndex,
     togglePlacementAxis,
     resetPlacement,
+    getFleetLocationInfo,
   };
 }
 
