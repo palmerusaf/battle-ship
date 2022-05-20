@@ -2,7 +2,7 @@ import "../styles/title-screen.scss";
 import { Components } from "./components";
 import { Interface } from "./interface";
 
-export function titleScreen() {
+export const titleScreen = () => {
   const content = document.querySelector(".content");
 
   const titleScreen = document.createElement("div");
@@ -19,4 +19,4 @@ export function titleScreen() {
   playButton.classList.add("play-button");
 
   titleScreen.appendChild(playButton);
-}
+};

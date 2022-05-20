@@ -4,11 +4,10 @@ import { shipPlacementScreen } from "./ship-placement-screen";
 import { gameOverScreen } from "./game-over-screen";
 
 export const Render = (() => {
-  function clearContent() {
-    document.querySelector(".content").textContent = "";
-  }
+  const clearContent = () =>
+    (document.querySelector(".content").textContent = "");
 
-  function attack(playerName, coordinate, isHit) {
+  const attack = (playerName, coordinate, isHit) => {
     const gridContainer = document.querySelector(
       `.grid-area--${playerName} > .grid-area__grid`
     );
@@ -30,7 +29,7 @@ export const Render = (() => {
       hitOrMiss.textContent = isHit ? "💥" : "💦";
       gridContainer.children[coordinate].appendChild(hitOrMiss);
     }
-  }
+  };
 
   return {
     battleScreen,

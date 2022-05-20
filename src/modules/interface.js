@@ -38,7 +38,7 @@ export const Interface = (() => {
     displayGrid.addShipToGrid({ coordinate, axis, shipIndex });
   }
 
-  function enemyGridClick({ target, enemyDisplayGrid,playerDisplayGrid }) {
+  function enemyGridClick({ target, enemyDisplayGrid, playerDisplayGrid }) {
     pubsub.publish("enemyGridClick", _getIndexOf(target));
   }
 

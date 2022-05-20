@@ -3,7 +3,7 @@ import { Components } from "./components";
 import { Interface } from "./interface";
 import { pubsub } from "./pubsub";
 
-export function shipPlacementScreen() {
+export const shipPlacementScreen=()=> {
   const content = document.querySelector(".content");
 
   const shipPlacementScreen = document.createElement("div");

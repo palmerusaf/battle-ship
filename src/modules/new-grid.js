@@ -1,5 +1,5 @@
 import { indexToShipName } from "./index-to-ship-name";
-export function newGrid() {
+export const newGrid = () => {
   const GRID_SIZE = 100;
   const gridContainer = initGridWithElements();
 
@@ -14,23 +14,17 @@ export function newGrid() {
     return gridContainer;
   }
 
-  function _modElements(mod) {
-    const gridElements = [...gridContainer.children];
-    gridElements.forEach(mod);
-  }
+  const _modElements = (mod) => [...gridContainer.children].forEach(mod);
 
-  function render() {
-    return gridContainer;
-  }
+  const render = () => gridContainer;
 
-  function setClickable() {
+  const setClickable = () =>
     _modElements((gridElement) => {
       gridElement.setAttribute("tabindex", "0");
       gridElement.classList.add("clickable");
     });
-  }
 
-  function setCoordinateHoverMsg(message) {
+  const setCoordinateHoverMsg = (message) => {
     _modElements(
       (gridElement, index) =>
         (gridElement.title = `${message} ${xYCoordinate(index)}`)
@@ -39,23 +33,21 @@ export function newGrid() {
     function xYCoordinate(index) {
       return `(${(index % 10) + 1}, ${Math.floor(index / 10 + 1)})`;
     }
-  }
+  };
 
-  function addParentClass(className) {
-    gridContainer.classList.add(className);
-  }
+  const addParentClass = (className) => gridContainer.classList.add(className);
 
-  function addChildClass(className) {
+  const addChildClass = (className) => {
     _modElements((gridElement) => gridElement.classList.add(className));
-  }
+  };
 
-  function addEventToElements(pEventType, pEvent) {
+  const addEventToElements = (pEventType, pEvent) => {
     _modElements((gridElement) =>
       gridElement.addEventListener(pEventType, pEvent)
     );
-  }
+  };
 
-  function addShipToGrid(placementData) {
+  const addShipToGrid = (placementData) => {
     const { coordinate, shipIndex, axis } = placementData;
     const ship = document.createElement("img");
     ship.classList.add("grid-container__ship", `ship-index-${shipIndex}`);
@@ -63,12 +55,12 @@ export function newGrid() {
     ship.src = `/src/imgs/${indexToShipName(shipIndex)}.png`;
     gridContainer.children[coordinate].appendChild(ship);
     gridContainer.children[coordinate].classList.remove("clickable");
-  }
+  };
 
-  function resetShips() {
+  const resetShips = () => {
     _modElements((gridElement) => (gridElement.textContent = ""));
     setClickable();
-  }
+  };
 
   return {
     render,
@@ -80,4 +72,4 @@ export function newGrid() {
     addShipToGrid,
     resetShips,
   };
-}
+};
