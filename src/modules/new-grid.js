@@ -62,6 +62,28 @@ export const newGrid = () => {
     setClickable();
   };
 
+  const receiveAttack = ({ coordinate, isHit }) => {
+    const gridElement = gridContainer.children[coordinate];
+    playBombAnimation(thenMarkHitOrMiss);
+
+    function playBombAnimation(callBack) {
+      const bombDrop = document.createElement("div");
+      bombDrop.classList.add("attack-grid", "attack-grid__bomb");
+      bombDrop.textContent = "💣";
+      bombDrop.addEventListener("animationend", callBack);
+      gridElement.appendChild(bombDrop);
+    }
+
+    function thenMarkHitOrMiss() {
+      gridElement.textContent = "";
+      gridElement.classList.remove("clickable");
+      const mark = document.createElement("div");
+      mark.classList.add("attack-grid");
+      mark.textContent = isHit ? "💥" : "💦";
+      gridElement.appendChild(mark);
+    }
+  };
+
   return {
     render,
     setClickable,
@@ -71,5 +93,6 @@ export const newGrid = () => {
     addEventToElements,
     addShipToGrid,
     resetShips,
+    receiveAttack,
   };
 };
