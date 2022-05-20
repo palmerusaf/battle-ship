@@ -170,21 +170,21 @@ describe("Ship placement tests", () => {
     expect(newBoard.isIllegalShipPlacement(1, "y")).toBe(true);
   });
 
-  it.skip("isIllegalShipPlacement return true if ships overlap on x axis", () => {
+  it("isIllegalShipPlacement return true if ships overlap on x axis", () => {
     newBoard.placeShip(5, "x");
     expect(newBoard.isIllegalShipPlacement(4, "x")).toBe(true);
     expect(newBoard.isIllegalShipPlacement(2, "x")).toBe(true);
     expect(newBoard.isIllegalShipPlacement(1, "x")).toBe(false);
   });
 
-  it.skip("isIllegalShipPlacement return true if ships overlap on y axis", () => {
+  it("isIllegalShipPlacement return true if ships overlap on y axis", () => {
     newBoard.placeShip(50, "y");
     expect(newBoard.isIllegalShipPlacement(40, "y")).toBe(true);
     expect(newBoard.isIllegalShipPlacement(20, "y")).toBe(true);
     expect(newBoard.isIllegalShipPlacement(10, "y")).toBe(false);
   });
 
-  it.skip("isIllegalShipPlacement return true if ships overlap with different axis", () => {
+  it("isIllegalShipPlacement return true if ships overlap with different axis", () => {
     newBoard.placeShip(5, "y");
     expect(newBoard.isIllegalShipPlacement(4, "x")).toBe(true);
     expect(newBoard.isIllegalShipPlacement(14, "x")).toBe(true);

@@ -30,10 +30,10 @@ export function GameBoard(pName) {
 
   const isIllegalShipPlacement = (startingCoordinate, axis) => {
     const shipIndex = _placementIndex;
-    const shipLength = _fleet[shipIndex].getLength();
-    return overFlowsGrid() || placedOnAnotherShip(startingCoordinate);
+    return overFlowsGrid() || overLapsAnotherShip();
 
     function overFlowsGrid() {
+      const shipLength = _fleet[shipIndex].getLength();
       return overFlowsGridOnXAxis() || overFlowsGridOnYAxis();
 
       function overFlowsGridOnXAxis() {
@@ -53,7 +53,13 @@ export function GameBoard(pName) {
       return _grid[pCoordinate].shipIndex !== "none";
     }
 
-    function overLapsAnotherShip() {}
+    function overLapsAnotherShip() {
+      const coordinatesToCheck = _fleet[shipIndex].checkCoordinates(
+        startingCoordinate,
+        axis
+      );
+      return coordinatesToCheck.some(placedOnAnotherShip);
+    }
   };
   const areAllShipsPlaced = () => {
     return _placementIndex === _fleet.length;
@@ -93,11 +99,6 @@ export function GameBoard(pName) {
     }
 
     function getRandomLegalPlacement() {
-      // while (true) {
-      //   const [coordinate, axis] = getRandomPlacement();
-      //   if (!isIllegalShipPlacement(coordinate, axis))
-      //     return [coordinate, axis];
-      // }
       let [coordinate, axis] = getRandomPlacement();
       while (isIllegalShipPlacement(coordinate, axis)) {
         [coordinate, axis] = getRandomPlacement();
