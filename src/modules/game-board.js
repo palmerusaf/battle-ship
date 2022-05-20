@@ -30,10 +30,10 @@ export function GameBoard(pName) {
 
   const isIllegalShipPlacement = (startingCoordinate, axis) => {
     const shipIndex = _placementIndex;
-    return overFlowsGrid() || placedOnAnotherShip();
+    const shipLength = _fleet[shipIndex].getLength();
+    return overFlowsGrid() || placedOnAnotherShip(startingCoordinate);
 
     function overFlowsGrid() {
-      const shipLength = _fleet[shipIndex].getLength();
       return overFlowsGridOnXAxis() || overFlowsGridOnYAxis();
 
       function overFlowsGridOnXAxis() {
@@ -49,9 +49,11 @@ export function GameBoard(pName) {
       }
     }
 
-    function placedOnAnotherShip() {
-      return _grid[startingCoordinate].shipIndex !== "none";
+    function placedOnAnotherShip(pCoordinate) {
+      return _grid[pCoordinate].shipIndex !== "none";
     }
+
+    function overLapsAnotherShip() {}
   };
   const areAllShipsPlaced = () => {
     return _placementIndex === _fleet.length;

@@ -170,6 +170,44 @@ describe("Ship placement tests", () => {
     expect(newBoard.isIllegalShipPlacement(1, "y")).toBe(true);
   });
 
+  it.skip("isIllegalShipPlacement return true if ships overlap on x axis", () => {
+    newBoard.placeShip(5, "x");
+    expect(newBoard.isIllegalShipPlacement(4, "x")).toBe(true);
+    expect(newBoard.isIllegalShipPlacement(2, "x")).toBe(true);
+    expect(newBoard.isIllegalShipPlacement(1, "x")).toBe(false);
+  });
+
+  it.skip("isIllegalShipPlacement return true if ships overlap on y axis", () => {
+    newBoard.placeShip(50, "y");
+    expect(newBoard.isIllegalShipPlacement(40, "y")).toBe(true);
+    expect(newBoard.isIllegalShipPlacement(20, "y")).toBe(true);
+    expect(newBoard.isIllegalShipPlacement(10, "y")).toBe(false);
+  });
+
+  it.skip("isIllegalShipPlacement return true if ships overlap with different axis", () => {
+    newBoard.placeShip(5, "y");
+    expect(newBoard.isIllegalShipPlacement(4, "x")).toBe(true);
+    expect(newBoard.isIllegalShipPlacement(14, "x")).toBe(true);
+    expect(newBoard.isIllegalShipPlacement(24, "x")).toBe(true);
+    expect(newBoard.isIllegalShipPlacement(34, "x")).toBe(true);
+    expect(newBoard.isIllegalShipPlacement(44, "x")).toBe(true);
+    expect(newBoard.isIllegalShipPlacement(3, "x")).toBe(true);
+    expect(newBoard.isIllegalShipPlacement(13, "x")).toBe(true);
+    expect(newBoard.isIllegalShipPlacement(23, "x")).toBe(true);
+    expect(newBoard.isIllegalShipPlacement(33, "x")).toBe(true);
+    expect(newBoard.isIllegalShipPlacement(43, "x")).toBe(true);
+    expect(newBoard.isIllegalShipPlacement(2, "x")).toBe(true);
+    expect(newBoard.isIllegalShipPlacement(12, "x")).toBe(true);
+    expect(newBoard.isIllegalShipPlacement(22, "x")).toBe(true);
+    expect(newBoard.isIllegalShipPlacement(32, "x")).toBe(true);
+    expect(newBoard.isIllegalShipPlacement(42, "x")).toBe(true);
+    expect(newBoard.isIllegalShipPlacement(1, "x")).toBe(false);
+    expect(newBoard.isIllegalShipPlacement(11, "x")).toBe(false);
+    expect(newBoard.isIllegalShipPlacement(21, "x")).toBe(false);
+    expect(newBoard.isIllegalShipPlacement(31, "x")).toBe(false);
+    expect(newBoard.isIllegalShipPlacement(41, "x")).toBe(false);
+  });
+
   it("newBoard.isIllegalShipPlacement Test -- place ship in coordinates that will overflow grid horizontally returns true", () => {
     expect(newBoard.isIllegalShipPlacement(6, "x")).toBe(true);
     expect(newBoard.isIllegalShipPlacement(6, "y")).toBe(false);

@@ -34,11 +34,22 @@ it("Set ship location horizontally Test 2", () => {
 it("Set ship location vertically Test 1", () => {
   const newShip = Ship(5);
   newShip.setCoordinates(1, "y");
-  expect(newShip.getCoordinates()).toEqual([1,11,21,31,41]);
+  expect(newShip.getCoordinates()).toEqual([1, 11, 21, 31, 41]);
 });
 
 it("Set ship location vertically Test 2", () => {
   const newShip = Ship(4);
   newShip.setCoordinates(9, "y");
-  expect(newShip.getCoordinates()).toEqual([9,19,29,39]);
+  expect(newShip.getCoordinates()).toEqual([9, 19, 29, 39]);
+});
+
+it("checkCoordinate Test -- checkCoordinates returns a list of hypothetical coordinates", () => {
+  const newShip = Ship(4);
+  expect(newShip.checkCoordinates(9, "y")).toEqual([9, 19, 29, 39]);
+});
+
+it("checkCoordinate Test -- checkCoordinates doesn't setCoordinates of Ship", () => {
+  const newShip = Ship(4);
+  newShip.checkCoordinates(9, "y");
+  expect(newShip.getCoordinates()).toEqual([]);
 });
