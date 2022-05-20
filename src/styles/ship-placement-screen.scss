@@ -5,7 +5,7 @@
   height: 100%;
   font-family: "Mil Stencil";
   align-items: center;
-  grid-template-rows: repeat(3, 1fr) 5fr 1fr;
+  grid-template-rows: repeat(3, 1fr) 5.5fr 1fr;
   place-items: center;
 }
 .welcome-msg {
@@ -22,6 +22,13 @@
   width: 100%;
   justify-content: center;
   gap: 1rem;
+  .flip-button {
+    transition: 500ms;
+    &--flipped {
+      transition: 500ms;
+      transform: rotate(90deg);
+    }
+  }
 }
 .placement-grid {
   width: 95vmin;

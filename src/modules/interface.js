@@ -8,6 +8,9 @@ export const Interface = (() => {
   }
 
   function flipShipClick() {
+    document
+      .querySelector(".flip-button")
+      .classList.toggle("flip-button--flipped");
     pubsub.publish("flipShipClick");
   }
 
@@ -42,7 +45,6 @@ export const Interface = (() => {
   function _getIndexOf(pTarget) {
     if (!pTarget.classList.contains("grid-container__element"))
       pTarget = pTarget.parentElement;
-    console.log(pTarget);
     return Array.from(pTarget.parentElement.children).indexOf(pTarget);
   }
 
