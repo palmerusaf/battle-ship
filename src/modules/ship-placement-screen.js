@@ -1,9 +1,9 @@
-import "../styles/ship-placement-screen.scss";
-import { Components } from "./components";
-import { Interface } from "./interface";
-import { pubsub } from "./pubsub";
+import "/src/styles/ship-placement-screen.scss";
+import { Components } from "/src/modules/components";
+import { Interface } from "/src/modules/interface";
+import { pubsub } from "/src/modules/pubsub";
 
-export const shipPlacementScreen=()=> {
+export const shipPlacementScreen = () => {
   const content = document.querySelector(".content");
 
   const shipPlacementScreen = document.createElement("div");
@@ -50,4 +50,4 @@ export const shipPlacementScreen=()=> {
   continueButton.classList.add("continue");
   continueButton.addEventListener("click", Interface.continueClick);
   shipPlacementScreen.appendChild(continueButton);
-}
+};

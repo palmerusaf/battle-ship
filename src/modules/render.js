@@ -1,7 +1,7 @@
-import { battleScreen } from "./battle-screen";
-import { titleScreen } from "./title-screen";
-import { shipPlacementScreen } from "./ship-placement-screen";
-import { gameOverScreen } from "./game-over-screen";
+import { battleScreen } from "/src/modules/battle-screen";
+import { titleScreen } from "/src/modules/title-screen";
+import { shipPlacementScreen } from "/src/modules/ship-placement-screen";
+import { gameOverScreen } from "/src/modules/game-over-screen";
 
 export const Render = (() => {
   const clearContent = () =>

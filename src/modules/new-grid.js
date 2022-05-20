@@ -1,4 +1,4 @@
-import { indexToShipName } from "./index-to-ship-name";
+import { indexToShipName } from "/src/modules/index-to-ship-name";
 export const newGrid = () => {
   const GRID_SIZE = 100;
   const gridContainer = initGridWithElements();

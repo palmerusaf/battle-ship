@@ -1,5 +1,5 @@
-import { ShipFleet } from "./ship-fleet";
-import { pubsub } from "./pubsub";
+import { ShipFleet } from "/src/modules/ship-fleet";
+import { pubsub } from "/src/modules/pubsub";
 
 const GRID_SIZE = 100;
 export function GameBoard(pName) {

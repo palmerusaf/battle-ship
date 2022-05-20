@@ -1,6 +1,6 @@
-import { Render } from "./render";
-import { pubsub } from "./pubsub";
-import { GameBoard } from "./game-board";
+import { Render } from "/src/modules/render";
+import { pubsub } from "/src/modules/pubsub";
+import { GameBoard } from "/src/modules/game-board";
 
 export const Interface = (() => {
   const enemyGameBoard = GameBoard("Enemy");

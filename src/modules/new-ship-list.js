@@ -1,4 +1,4 @@
-import { indexToShipName } from "./index-to-ship-name";
+import { indexToShipName } from "/src/modules/index-to-ship-name";
 
 export function newShipListFor(playerName) {
   const shipArea = document.createElement("div");
