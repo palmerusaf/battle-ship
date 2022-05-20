@@ -1,5 +1,5 @@
-import "/src/styles/components.scss";
-import { newGrid } from "/src/modules/new-grid";
+import "../styles/components.scss";
+import { newGrid } from "./new-grid";
 
 export const Components = (() => {
   const newButton = (label) => {

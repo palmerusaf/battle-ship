@@ -1,6 +1,6 @@
-import "/src/styles/title-screen.scss";
-import { Components } from "/src/modules/components";
-import { Interface } from "/src/modules/interface";
+import "../styles/title-screen.scss";
+import { Components } from "./components";
+import { Interface } from "./interface";
 
 export const titleScreen = () => {
   const content = document.querySelector(".content");

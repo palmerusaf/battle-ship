@@ -1,8 +1,8 @@
-import "/src/styles/battle-screen.scss";
-import { pubsub } from "/src/modules/pubsub";
-import { newGridAreaFor } from "/src/modules/new-grid-area";
-import { newShipListFor } from "/src/modules/new-ship-list";
-import { Render } from "/src/modules/render";
+import "../styles/battle-screen.scss";
+import { pubsub } from "./pubsub";
+import { newGridAreaFor } from "./new-grid-area";
+import { newShipListFor } from "./new-ship-list";
+import { Render } from "./render";
 
 export function battleScreen() {
   const content = document.querySelector(".content");

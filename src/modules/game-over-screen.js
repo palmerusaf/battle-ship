@@ -1,6 +1,6 @@
-import "/src/styles/game-over-screen.scss";
-import { Components } from "/src/modules/components";
-import { Interface } from "/src/modules/interface";
+import "../styles/game-over-screen.scss";
+import { Components } from "./components";
+import { Interface } from "./interface";
 
 export function gameOverScreen(isWinner) {
   const content = document.querySelector(".content");

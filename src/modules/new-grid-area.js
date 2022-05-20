@@ -1,5 +1,5 @@
-import { Components } from "/src/modules/components";
-import { Interface } from "/src/modules/interface";
+import { Components } from "./components";
+import { Interface } from "./interface";
 
 export function newGridAreaFor(playerName) {
   const gridArea = document.createElement("div");
