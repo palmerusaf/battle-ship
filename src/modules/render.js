@@ -1,6 +1,6 @@
 import { battleScreen } from "./battle-screen";
 import { titleScreen } from "./title-screen";
-import { shipPlacementScreen } from "./ship-placement-screen";
+import { shipPlacementScreen } from "./placement-screen";
 import { gameOverScreen } from "./game-over-screen";
 
 export const Render = (() => {
