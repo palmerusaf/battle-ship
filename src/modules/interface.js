@@ -9,7 +9,7 @@ export const Interface = (() => {
 
   function startGameClick() {
     Render.clearContent();
-    Render.shipPlacementScreen();
+    Render.placementScreen();
   }
 
   function flipShipClick(e) {
@@ -39,7 +39,34 @@ export const Interface = (() => {
   }
 
   function enemyGridClick({ target, enemyDisplayGrid, playerDisplayGrid }) {
-    pubsub.publish("enemyGridClick", _getIndexOf(target));
+    if (enemyGameBoard.isFleetSunk() || playerGameBoard.isFleetSunk()) return;
+    const coordinate = _getIndexOf(target);
+    if (enemyGameBoard.getCoordinateStatus(coordinate).isPlayed) return;
+
+    playersTurn();
+
+    function playersTurn() {
+      enemyGameBoard.receiveAttack(coordinate);
+      const isHit =
+        enemyGameBoard.getCoordinateStatus(coordinate).shipIndex !== "none";
+      enemyDisplayGrid.receiveAttack({ coordinate, isHit });
+      if (enemyGameBoard.getIsNewSinkingReport()) {
+        const report = enemyGameBoard.getLatestSinkingReport();
+        console.log(report);
+        eraseShipFromList(report);
+        enemyDisplayGrid.addShipToGrid(report);
+      }
+      if (enemyGameBoard.isFleetSunk()) {
+        Render.gameOverScreen({ isWinner: false });
+      }
+    }
+
+    function eraseShipFromList({ playerName, shipIndex }) {
+      const ship = document.querySelector(
+        `.${playerName}-ship-list-item-${shipIndex}`
+      );
+      ship.classList.add("sunk");
+    }
   }
 
   function playAgainClick() {
@@ -58,17 +85,6 @@ export const Interface = (() => {
     if (!pTarget.classList.contains("grid-container__element"))
       pTarget = pTarget.parentElement;
     return Array.from(pTarget.parentElement.children).indexOf(pTarget);
-  }
-
-  function shipHasSunk(report) {
-    eraseShipFromList(report);
-
-    function eraseShipFromList({ playerName, shipIndex }) {
-      const ship = document.querySelector(
-        `.${playerName}-ship-list-item-${shipIndex}`
-      );
-      ship.classList.add("sunk");
-    }
   }
 
   return {

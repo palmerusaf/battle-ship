@@ -9,6 +9,8 @@ export function GameBoard(pName) {
   const _playerName = pName;
   let _placementIndex = 0;
   let _placementAxis = "x";
+  let _isNewSinkingReport = false;
+  let _latestSinkingReport = {};
 
   const getCoordinateStatus = (index) => _grid[index];
 
@@ -78,26 +80,28 @@ export function GameBoard(pName) {
       const shipToAttack = _fleet[shipIndex];
       shipToAttack.hit();
 
-      if (shipToAttack.isSunk()) publishShipSinking();
+      if (shipToAttack.isSunk()) recordShipSinking();
 
-      function publishShipSinking() {
-        pubsub.publish("shipHasSunk", {
-          startingCoordinate: shipToAttack.getStartingCoordinate(),
+      function recordShipSinking() {
+        _latestSinkingReport = {
+          coordinate: shipToAttack.getStartingCoordinate(),
           shipIndex: shipIndex,
           playerName: _playerName,
           axis: shipToAttack.getAxis(),
-        });
-        Interface.shipHasSunk({
-          startingCoordinate: shipToAttack.getStartingCoordinate(),
-          shipIndex: shipIndex,
-          playerName: _playerName,
-          axis: shipToAttack.getAxis(),
-        });
+        };
+        _isNewSinkingReport = true;
       }
     }
   };
 
   const isFleetSunk = () => _fleet.every((ship) => ship.isSunk());
+
+  const getIsNewSinkingReport = () => _isNewSinkingReport;
+
+  const getLatestSinkingReport = () => {
+    _isNewSinkingReport = false;
+    return _latestSinkingReport;
+  };
 
   const placeAllShipsAtRandomCoordinates = () => {
     while (!areAllShipsPlaced()) {
@@ -151,6 +155,8 @@ export function GameBoard(pName) {
     placeAllShipsAtRandomCoordinates,
     receiveAttack,
     isFleetSunk,
+    getIsNewSinkingReport,
+    getLatestSinkingReport,
     getPlacementAxis,
     getPlacementIndex,
     togglePlacementAxis,
