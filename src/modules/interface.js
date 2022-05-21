@@ -96,6 +96,5 @@ export const Interface = (() => {
     enemyGridClick,
     playAgainClick,
     quitClick,
-    shipHasSunk,
   };
 })();

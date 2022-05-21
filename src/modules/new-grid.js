@@ -21,7 +21,7 @@ export const newGrid = () => {
   const setClickable = () =>
     _modElements((gridElement) => {
       gridElement.setAttribute("tabindex", "0");
-      gridElement.classList.add("clickable");
+      gridElement.classList.add("grid-container__element--clickable");
     });
 
   const setCoordinateHoverMsg = (message) => {
@@ -69,13 +69,15 @@ export const newGrid = () => {
       const bombDrop = document.createElement("div");
       bombDrop.classList.add("attack-grid", "attack-grid__bomb");
       bombDrop.textContent = "💣";
-      bombDrop.addEventListener("animationend", callBack);
+      bombDrop.addEventListener("animationend", () => {
+        gridElement.removeChild(bombDrop);
+        callBack();
+      });
       gridElement.appendChild(bombDrop);
     }
 
     function thenMarkHitOrMiss() {
-      gridElement.textContent = "";
-      gridElement.classList.remove("clickable");
+      gridElement.classList.remove("grid-container__element--clickable");
       const mark = document.createElement("div");
       mark.classList.add("attack-grid");
       mark.textContent = isHit ? "💥" : "💦";
