@@ -1,4 +1,4 @@
-import { indexToShipName } from "./index-to-ship-name";
+import { getShipImgFromIndex } from "./index-to-ship-name";
 
 export function newShipListFor(playerName) {
   const shipArea = document.createElement("div");
@@ -27,7 +27,7 @@ export function newShipListFor(playerName) {
       shipList.appendChild(shipItem);
 
       const shipImg = document.createElement("img");
-      shipImg.src = `/src/imgs/${indexToShipName(i)}.png`;
+      shipImg.src = getShipImgFromIndex(i);
       shipImg.classList.add("ship-area__img");
       shipItem.appendChild(shipImg);
     }

@@ -1,4 +1,4 @@
-import { indexToShipName } from "./index-to-ship-name";
+import { getShipImgFromIndex } from "./index-to-ship-name";
 export const newGrid = () => {
   const GRID_SIZE = 100;
   const gridContainer = initGridWithElements();
@@ -51,7 +51,7 @@ export const newGrid = () => {
     const ship = document.createElement("img");
     ship.classList.add("grid-container__ship", `ship-index-${shipIndex}`);
     if (axis === "y") ship.classList.add("grid-container__ship--rotated");
-    ship.src = `/src/imgs/${indexToShipName(shipIndex)}.png`;
+    ship.src = getShipImgFromIndex(shipIndex);
     gridContainer.children[coordinate].appendChild(ship);
     gridContainer.children[coordinate].classList.remove("clickable");
   };
