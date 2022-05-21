@@ -1,6 +1,6 @@
 import { battleScreen } from "./battle-screen";
 import { titleScreen } from "./title-screen";
-import { shipPlacementScreen } from "./placement-screen";
+import { placementScreen } from "./placement-screen";
 import { gameOverScreen } from "./game-over-screen";
 
 export const Render = (() => {
@@ -10,7 +10,7 @@ export const Render = (() => {
   return {
     battleScreen,
     titleScreen,
-    shipPlacementScreen,
+    placementScreen,
     gameOverScreen,
     clearContent,
   };
