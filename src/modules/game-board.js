@@ -94,6 +94,14 @@ export function GameBoard(pName) {
     }
   };
 
+  const generateRandomLegalAttack = () => {
+    let randomCoordinate = Math.floor(Math.random() * GRID_SIZE);
+    while (getCoordinateStatus(randomCoordinate).isPlayed) {
+      randomCoordinate = Math.floor(Math.random() * GRID_SIZE);
+    }
+    return randomCoordinate;
+  };
+
   const isFleetSunk = () => _fleet.every((ship) => ship.isSunk());
 
   const getIsNewSinkingReport = () => _isNewSinkingReport;
@@ -154,6 +162,7 @@ export function GameBoard(pName) {
     areAllShipsPlaced,
     placeAllShipsAtRandomCoordinates,
     receiveAttack,
+    generateRandomLegalAttack,
     isFleetSunk,
     getIsNewSinkingReport,
     getLatestSinkingReport,

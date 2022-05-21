@@ -1,11 +1,13 @@
 import { Render } from "./render";
 import { pubsub } from "./pubsub";
 import { GameBoard } from "./game-board";
+import { Game } from "./game.js";
 
 export const Interface = (() => {
   const enemyGameBoard = GameBoard("Enemy");
   enemyGameBoard.placeAllShipsAtRandomCoordinates();
   const playerGameBoard = GameBoard("Player");
+  playerGameBoard.placeAllShipsAtRandomCoordinates();
 
   function startGameClick() {
     Render.clearContent();
@@ -43,30 +45,45 @@ export const Interface = (() => {
     const coordinate = _getIndexOf(target);
     if (enemyGameBoard.getCoordinateStatus(coordinate).isPlayed) return;
 
-    playersTurn();
+    takeTurn({
+      coordinate,
+      displayGrid: enemyDisplayGrid,
+      gameBoard: enemyGameBoard,
+    });
+    if (enemyGameBoard.isFleetSunk()) {
+      Render.gameOverScreen({ isWinner: true });
+    }
 
-    function playersTurn() {
-      enemyGameBoard.receiveAttack(coordinate);
+    const legalAttack = playerGameBoard.generateRandomLegalAttack();
+    console.log(legalAttack);
+    takeTurn({
+      coordinate: legalAttack,
+      displayGrid: playerDisplayGrid,
+      gameBoard: playerGameBoard,
+    });
+    if (playerGameBoard.isFleetSunk()) {
+      Render.gameOverScreen({ isWinner: false });
+    }
+
+    function takeTurn({ coordinate, displayGrid, gameBoard }) {
+      gameBoard.receiveAttack(coordinate);
       const isHit =
-        enemyGameBoard.getCoordinateStatus(coordinate).shipIndex !== "none";
-      enemyDisplayGrid.receiveAttack({ coordinate, isHit });
-      if (enemyGameBoard.getIsNewSinkingReport()) {
-        const report = enemyGameBoard.getLatestSinkingReport();
-        console.log(report);
-        eraseShipFromList(report);
-        enemyDisplayGrid.addShipToGrid(report);
-      }
-      if (enemyGameBoard.isFleetSunk()) {
-        Render.gameOverScreen({ isWinner: false });
-      }
-    }
+        gameBoard.getCoordinateStatus(coordinate).shipIndex !== "none";
+      displayGrid.receiveAttack({ coordinate, isHit });
 
-    function eraseShipFromList({ playerName, shipIndex }) {
-      const ship = document.querySelector(
-        `.${playerName}-ship-list-item-${shipIndex}`
-      );
-      ship.classList.add("sunk");
+      if (gameBoard.getIsNewSinkingReport()) {
+        const report = gameBoard.getLatestSinkingReport();
+        eraseShipFromList(report);
+        displayGrid.addShipToGrid(report);
+      }
     }
+  }
+
+  function eraseShipFromList({ playerName, shipIndex }) {
+    const ship = document.querySelector(
+      `.${playerName}-ship-list-item-${shipIndex}`
+    );
+    ship.classList.add("sunk");
   }
 
   function playAgainClick() {
