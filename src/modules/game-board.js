@@ -1,5 +1,6 @@
 import { ShipFleet } from "./ship-fleet";
 import { pubsub } from "./pubsub";
+import { Interface } from "./interface";
 
 const GRID_SIZE = 100;
 export function GameBoard(pName) {
@@ -81,6 +82,12 @@ export function GameBoard(pName) {
 
       function publishShipSinking() {
         pubsub.publish("shipHasSunk", {
+          startingCoordinate: shipToAttack.getStartingCoordinate(),
+          shipIndex: shipIndex,
+          playerName: _playerName,
+          axis: shipToAttack.getAxis(),
+        });
+        Interface.shipHasSunk({
           startingCoordinate: shipToAttack.getStartingCoordinate(),
           shipIndex: shipIndex,
           playerName: _playerName,

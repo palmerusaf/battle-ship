@@ -1,28 +1,41 @@
 import "../styles/battle-screen.scss";
-import { pubsub } from "./pubsub";
 import { newGridAreaFor } from "./new-grid-area";
 import { newShipListFor } from "./new-ship-list";
-import { Render } from "./render";
+import { Components } from "./components";
+import { Interface } from "./interface";
 
-export function battleScreen(pFleetLocationInfo) {
+export function battleScreen(playerFleetLocationInfo) {
   const content = document.querySelector(".content");
 
   const battleScreen = document.createElement("div");
   battleScreen.classList.add("battle-screen");
   content.appendChild(battleScreen);
 
-  battleScreen.appendChild(newGridAreaFor("Enemy"));
+  const enemyDisplayGrid = Components.newGrid();
+  addEnemyAttributesTo(enemyDisplayGrid);
+  battleScreen.appendChild(newGridAreaFor("Enemy", enemyDisplayGrid));
   battleScreen.appendChild(newShipListFor("Enemy"));
 
-  battleScreen.appendChild(newGridAreaFor("Player", pFleetLocationInfo));
+  const playerDisplayGrid = Components.newGrid();
+  renderShipsOn(playerDisplayGrid);
+  battleScreen.appendChild(newGridAreaFor("Player", playerDisplayGrid));
   battleScreen.appendChild(newShipListFor("Player"));
 
-  function eraseShipFromList(data) {
-    const { playerName, shipIndex } = data;
-    const ship = document.querySelector(
-      `.${playerName}-ship-list-item-${shipIndex}`
+  function renderShipsOn(grid) {
+    playerFleetLocationInfo.forEach((shipLocation) =>
+      grid.addShipToGrid(shipLocation)
     );
-    ship.classList.add("sunk");
   }
-  pubsub.subscribe("shipHasSunk", eraseShipFromList);
+
+  function addEnemyAttributesTo(grid) {
+    grid.setClickable();
+    grid.addEventToElements("click", (e) =>
+      Interface.enemyGridClick({
+        target: e.target,
+        enemyDisplayGrid,
+        playerDisplayGrid,
+      })
+    );
+    grid.setCoordinateHoverMsg("Attack coordinate");
+  }
 }

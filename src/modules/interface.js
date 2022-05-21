@@ -60,6 +60,17 @@ export const Interface = (() => {
     return Array.from(pTarget.parentElement.children).indexOf(pTarget);
   }
 
+  function shipHasSunk(report) {
+    eraseShipFromList(report);
+
+    function eraseShipFromList({ playerName, shipIndex }) {
+      const ship = document.querySelector(
+        `.${playerName}-ship-list-item-${shipIndex}`
+      );
+      ship.classList.add("sunk");
+    }
+  }
+
   return {
     startGameClick,
     flipShipClick,
@@ -69,5 +80,6 @@ export const Interface = (() => {
     enemyGridClick,
     playAgainClick,
     quitClick,
+    shipHasSunk,
   };
 })();
