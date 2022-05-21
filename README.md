@@ -7,8 +7,6 @@
 *** Thanks again! Now go create something AMAZING! :D
 -->
 
-
-
 <!-- PROJECT SHIELDS -->
 <!--
 *** I'm using markdown "reference style" links for readability.
@@ -17,6 +15,7 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
+
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
@@ -24,13 +23,11 @@
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
-
-
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
   <a href="https://github.com/palmerusaf/battle-ship">
-    <img src="src/img/logo.png" alt="Logo" width="80" height="80">
+    <img src="src/imgs/favicon.png" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">Battle Ship</h3>
@@ -41,15 +38,13 @@
     <a href="https://github.com/palmerusaf/battle-ship"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/palmerusaf/battle-ship">View Demo</a>
+    <a href="https://palmerusaf.github.io/battle-ship">View Demo</a>
     ·
     <a href="https://github.com/palmerusaf/battle-ship/issues">Report Bug</a>
     ·
     <a href="https://github.com/palmerusaf/battle-ship/issues">Request Feature</a>
   </p>
 </div>
-
-
 
 <!-- TABLE OF CONTENTS -->
 <details>
@@ -70,55 +65,53 @@
   </ol>
 </details>
 
-
-
 <!-- ABOUT THE PROJECT -->
+
 ## About The Project
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-This is a project from [The Odin Project](https://www.theodinproject.com/lessons/node-path-javascript-battleship). It is a take on the classic board game [battleship](https://en.wikipedia.org/wiki/Battleship_(game)).
+This is a project from [The Odin Project](https://www.theodinproject.com/lessons/node-path-javascript-battleship). It is a take on the classic board game [battleship](<https://en.wikipedia.org/wiki/Battleship_(game)>).
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
 ### Built With
 
-* [Webpack](https://webpack.js.org/)
-* [Sass](https://sass-lang.com/)
-* [Jest](https://jestjs.io/)
-* [JavaScript](https://www.javascript.com/)
+- [Webpack](https://webpack.js.org/)
+- [Sass](https://sass-lang.com/)
+- [Jest](https://jestjs.io/)
+- [JavaScript](https://www.javascript.com/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Purpose
+
 The purpose of this project was to practice the Test Driven Development (TDD) methodology.
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
 <!-- ROADMAP -->
+
 ## Roadmap
 
-- [ ] Five unique ships
-    - [ ] Carrier
-    - [ ] Battleship
-    - [ ] Cruiser
-    - [ ] Submarine
-    - [ ] Destroyer
-- [ ] Menu to place ship
+- [x] Five unique ships
+  - [x] Carrier
+  - [x] Battleship
+  - [x] Cruiser
+  - [x] Submarine
+  - [x] Destroyer
+- [x] Menu to place ship
+  - [ ] Random button
 - [ ] Sound effects
-- [ ] Computer player
-    - [ ] Computer attacks grids next to hit
+- [x] Computer player
+  - [ ] Computer attacks grids next to hit
 
 See the [open issues](https://github.com/palmerusaf/battle-ship/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
 <!-- CONTRIBUTING -->
+
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
@@ -134,18 +127,18 @@ Don't forget to give the project a star! Thanks again!
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
 <!-- LICENSE -->
+
 ## License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+- Distributed under the MIT License. See `LICENSE.txt` for more information.
+- Ship PNGs under Personal License.
+- <a target="_blank" href="https://icons8.com/icon/17887/battleship">Battleship</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
 <!-- CONTACT -->
+
 ## Contact
 
 Branden Palmer - [@branden_palmer8](https://twitter.com/branden_palmer8) - brandenpalmer08@gmail.com
@@ -154,19 +147,17 @@ Project Link: [https://github.com/palmerusaf/battle-ship](https://github.com/pal
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
 <!-- ACKNOWLEDGMENTS -->
+
 ## Acknowledgments
 
-* [Best README Template](https://github.com/othneildrew/Best-README-Template)
+- [Best README Template](https://github.com/othneildrew/Best-README-Template)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
 [contributors-shield]: https://img.shields.io/github/contributors/palmerusaf/battle-ship.svg?style=for-the-badge
 [contributors-url]: https://github.com/palmerusaf/battle-ship/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/palmerusaf/battle-ship.svg?style=for-the-badge
@@ -179,4 +170,4 @@ Project Link: [https://github.com/palmerusaf/battle-ship](https://github.com/pal
 [license-url]: https://github.com/palmerusaf/battle-ship/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/branden-palmer-968765120
-[product-screenshot]: src/img/screenshot.png
+[product-screenshot]: src/imgs/screen-shot.png
