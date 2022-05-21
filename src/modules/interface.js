@@ -45,45 +45,8 @@ export const Interface = (() => {
     const coordinate = _getIndexOf(target);
     if (enemyGameBoard.getCoordinateStatus(coordinate).isPlayed) return;
 
-    takeTurn({
-      coordinate,
-      displayGrid: enemyDisplayGrid,
-      gameBoard: enemyGameBoard,
-    });
-    if (enemyGameBoard.isFleetSunk()) {
-      Render.gameOverScreen({ isWinner: true });
-    }
-
-    const legalAttack = playerGameBoard.generateRandomLegalAttack();
-    console.log(legalAttack);
-    takeTurn({
-      coordinate: legalAttack,
-      displayGrid: playerDisplayGrid,
-      gameBoard: playerGameBoard,
-    });
-    if (playerGameBoard.isFleetSunk()) {
-      Render.gameOverScreen({ isWinner: false });
-    }
-
-    function takeTurn({ coordinate, displayGrid, gameBoard }) {
-      gameBoard.receiveAttack(coordinate);
-      const isHit =
-        gameBoard.getCoordinateStatus(coordinate).shipIndex !== "none";
-      displayGrid.receiveAttack({ coordinate, isHit });
-
-      if (gameBoard.getIsNewSinkingReport()) {
-        const report = gameBoard.getLatestSinkingReport();
-        eraseShipFromList(report);
-        displayGrid.addShipToGrid(report);
-      }
-    }
-  }
-
-  function eraseShipFromList({ playerName, shipIndex }) {
-    const ship = document.querySelector(
-      `.${playerName}-ship-list-item-${shipIndex}`
-    );
-    ship.classList.add("sunk");
+    Game.playerTurn({ coordinate, enemyDisplayGrid, enemyGameBoard });
+    Game.enemyTurn({ playerGameBoard, playerDisplayGrid });
   }
 
   function playAgainClick() {

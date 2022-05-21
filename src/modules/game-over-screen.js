@@ -2,7 +2,7 @@ import "../styles/game-over-screen.scss";
 import { Components } from "./components";
 import { Interface } from "./interface";
 
-export function gameOverScreen(isWinner) {
+export function gameOverScreen({ isWinner }) {
   const content = document.querySelector(".content");
 
   const gameOverContainer = document.createElement("div");
