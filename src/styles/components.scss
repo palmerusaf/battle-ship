@@ -40,9 +40,12 @@
     position: absolute;
     height: 100%;
     z-index: 1;
+    animation: popIn 500ms;
+    cursor: default;
     &--rotated {
       transform-origin: top left;
       transform: rotate(90deg) translate(0, -100%);
+      animation: popInRotated 600ms;
     }
   }
 }

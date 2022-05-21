@@ -12,3 +12,27 @@
     opacity: 0;
   }
 }
+@keyframes shrinkOut {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0);
+  }
+}
+@keyframes popIn {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@keyframes popInRotated {
+  from {
+    transform: scale(0) rotate(90deg) translate(0, -100%);
+  }
+  to {
+    transform: scale(1) rotate(90deg) translate(0, -100%);
+  }
+}
