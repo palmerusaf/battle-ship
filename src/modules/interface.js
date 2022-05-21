@@ -1,5 +1,4 @@
 import { Render } from "./render";
-import { pubsub } from "./pubsub";
 import { GameBoard } from "./game-board";
 import { Game } from "./game.js";
 
@@ -7,7 +6,6 @@ export const Interface = (() => {
   const enemyGameBoard = GameBoard("Enemy");
   enemyGameBoard.placeAllShipsAtRandomCoordinates();
   const playerGameBoard = GameBoard("Player");
-  playerGameBoard.placeAllShipsAtRandomCoordinates();
 
   function startGameClick() {
     Render.clearContent();
@@ -31,10 +29,12 @@ export const Interface = (() => {
   }
 
   function placementGridClick({ target, displayGrid }) {
-    const coordinate = _getIndexOf(target);
     if (playerGameBoard.areAllShipsPlaced()) return;
+
+    const coordinate = _getIndexOf(target);
     const axis = playerGameBoard.getPlacementAxis();
     if (playerGameBoard.isIllegalShipPlacement(coordinate, axis)) return;
+
     const shipIndex = playerGameBoard.getPlacementIndex();
     playerGameBoard.placeShip(coordinate);
     displayGrid.addShipToGrid({ coordinate, axis, shipIndex });
@@ -50,7 +50,9 @@ export const Interface = (() => {
   }
 
   function playAgainClick() {
-    pubsub.publish("playAgainClick");
+    playerGameBoard.resetPlacement();
+    enemyGameBoard.resetPlacement();
+    enemyGameBoard.placeAllShipsAtRandomCoordinates();
     Render.clearContent();
     Render.titleScreen();
   }

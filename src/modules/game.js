@@ -1,3 +1,5 @@
+import { Render } from "./render";
+
 export const Game = (() => {
   const playerTurn = ({ coordinate, enemyDisplayGrid, enemyGameBoard }) => {
     takeTurn({
