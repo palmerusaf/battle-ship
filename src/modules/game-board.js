@@ -1,6 +1,4 @@
 import { ShipFleet } from "./ship-fleet";
-import { pubsub } from "./pubsub";
-import { Interface } from "./interface";
 
 const GRID_SIZE = 100;
 export function GameBoard(pName) {

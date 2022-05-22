@@ -1,5 +1,4 @@
 import { GameBoard } from "../modules/game-board";
-import { pubsub } from "../modules/pubsub";
 
 let newBoard;
 beforeEach(() => (newBoard = GameBoard("Player")));
@@ -297,26 +296,6 @@ it("newBoard.receiveAttack Test -- receiveAttack misses", () => {
   expect(newBoard.getCoordinateStatus(0)).toEqual({
     isPlayed: true,
     shipIndex: "none",
-  });
-});
-
-it("Sinking ship publishes report", () => {
-  placeAllShipHorizontally();
-  let sinkingReport;
-  pubsub.subscribe("shipHasSunk", (data) => (sinkingReport = data));
-  attackShipPlacedHorizontally(0, 5);
-  expect(sinkingReport).toEqual({
-    shipIndex: 0,
-    startingCoordinate: 0,
-    playerName: "Player",
-    axis: "x",
-  });
-  attackShipPlacedHorizontally(10, 4);
-  expect(sinkingReport).toEqual({
-    shipIndex: 1,
-    startingCoordinate: 10,
-    playerName: "Player",
-    axis: "x",
   });
 });
 

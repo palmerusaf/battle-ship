@@ -3,11 +3,13 @@ import { GameBoard } from "./game-board";
 import { Game } from "./game.js";
 
 export const Interface = (() => {
-  const enemyGameBoard = GameBoard("Enemy");
-  enemyGameBoard.placeAllShipsAtRandomCoordinates();
-  const playerGameBoard = GameBoard("Player");
+  let enemyGameBoard;
+  let playerGameBoard;
 
   function startGameClick() {
+    enemyGameBoard = GameBoard("Enemy");
+    enemyGameBoard.placeAllShipsAtRandomCoordinates();
+    playerGameBoard = GameBoard("Player");
     Render.clearContent();
     Render.placementScreen();
   }
@@ -50,9 +52,6 @@ export const Interface = (() => {
   }
 
   function playAgainClick() {
-    playerGameBoard.resetPlacement();
-    enemyGameBoard.resetPlacement();
-    enemyGameBoard.placeAllShipsAtRandomCoordinates();
     Render.clearContent();
     Render.titleScreen();
   }
