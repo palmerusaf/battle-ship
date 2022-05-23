@@ -36,3 +36,11 @@
     transform: scale(1) rotate(90deg) translate(0, -100%);
   }
 }
+@keyframes crazySpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(180deg);
+  }
+}

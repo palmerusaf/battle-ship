@@ -56,6 +56,10 @@ export const newGrid = () => {
     gridContainer.children[coordinate].classList.remove("clickable");
   };
 
+  const addAllShips = (locationInfo) => {
+    locationInfo.forEach((shipLocation) => addShipToGrid(shipLocation));
+  };
+
   const resetShips = () => {
     _modElements((gridElement) => (gridElement.textContent = ""));
     setClickable();
@@ -93,6 +97,7 @@ export const newGrid = () => {
     addChildClass,
     addEventToElements,
     addShipToGrid,
+    addAllShips,
     resetShips,
     receiveAttack,
   };

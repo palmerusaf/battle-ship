@@ -19,6 +19,12 @@ export const Interface = (() => {
     e.target.classList.toggle("flip-button--flipped");
   }
 
+  function randomClick(displayGrid) {
+    resetClick(displayGrid);
+    playerGameBoard.placeAllShipsAtRandomCoordinates();
+    displayGrid.addAllShips(playerGameBoard.getFleetLocationInfo());
+  }
+
   function resetClick(displayGrid) {
     displayGrid.resetShips();
     playerGameBoard.resetPlacement();
@@ -71,6 +77,7 @@ export const Interface = (() => {
   return {
     startGameClick,
     flipShipClick,
+    randomClick,
     resetClick,
     continueClick,
     placementGridClick,

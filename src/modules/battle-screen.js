@@ -17,15 +17,9 @@ export function battleScreen(playerFleetLocationInfo) {
   battleScreen.appendChild(newShipListFor("Enemy"));
 
   const playerDisplayGrid = Components.newGrid();
-  renderShipsOn(playerDisplayGrid);
+  playerDisplayGrid.addAllShips(playerFleetLocationInfo);
   battleScreen.appendChild(newGridAreaFor("Player", playerDisplayGrid));
   battleScreen.appendChild(newShipListFor("Player"));
-
-  function renderShipsOn(grid) {
-    playerFleetLocationInfo.forEach((shipLocation) =>
-      grid.addShipToGrid(shipLocation)
-    );
-  }
 
   function addEnemyAttributesTo(grid) {
     grid.setClickable();

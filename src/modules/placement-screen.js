@@ -1,4 +1,4 @@
-import "/src/styles/placement-screen.scss";
+import "../styles/placement-screen.scss";
 import { Components } from "/src/modules/components";
 import { Interface } from "/src/modules/interface";
 
@@ -32,6 +32,13 @@ export const placementScreen = () => {
   const reset = Components.newButton("Reset");
   reset.addEventListener("click", () => Interface.resetClick(placementGrid));
   buttonField.appendChild(reset);
+
+  const random = Components.newButton("Random");
+  random.classList.add("crazy-spin");
+  random.addEventListener("click", () => {
+    Interface.randomClick(placementGrid);
+  });
+  buttonField.appendChild(random);
 
   const placementGrid = Components.newGrid();
   placementGrid.setClickable();
