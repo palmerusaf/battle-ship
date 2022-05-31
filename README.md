@@ -101,7 +101,7 @@ The purpose of this project was to practice the Test Driven Development (TDD) me
   - [x] Submarine
   - [x] Destroyer
 - [x] Menu to place ship
-  - [ ] Random button
+  - [x] Random button
 - [ ] Sound effects
 - [x] Computer player
   - [ ] Computer attacks grids next to hit
