@@ -69,7 +69,7 @@
 
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Product Name Screen Shot][product-screenshot]](https://palmerusaf.github.io/battle-ship/)
 
 This is a project from [The Odin Project](https://www.theodinproject.com/lessons/node-path-javascript-battleship). It is a take on the classic board game [battleship](<https://en.wikipedia.org/wiki/Battleship_(game)>).
 
