@@ -131,7 +131,7 @@ Don't forget to give the project a star! Thanks again!
 
 ## License
 
-- Distributed under the MIT License. See `LICENSE.txt` for more information.
+- Distributed under the MIT License. See `LICENSE` for more information.
 - Ship PNGs under Personal License.
 - <a target="_blank" href="https://icons8.com/icon/17887/battleship">Battleship</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
 
@@ -167,7 +167,7 @@ Project Link: [https://github.com/palmerusaf/battle-ship](https://github.com/pal
 [issues-shield]: https://img.shields.io/github/issues/palmerusaf/battle-ship.svg?style=for-the-badge
 [issues-url]: https://github.com/palmerusaf/battle-ship/issues
 [license-shield]: https://img.shields.io/github/license/palmerusaf/battle-ship.svg?style=for-the-badge
-[license-url]: https://github.com/palmerusaf/battle-ship/blob/master/LICENSE.txt
+[license-url]: https://github.com/palmerusaf/battle-ship/blob/master/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/branden-palmer-968765120
 [product-screenshot]: src/imgs/screen-shot.png
